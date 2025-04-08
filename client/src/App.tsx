@@ -10,7 +10,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Interesting from "@/pages/Interesting";
 import InterestingDetail from "@/pages/InterestingDetail";
-import Alternatives from "@/pages/Alternatives";
+import Locations from "@/pages/Locations";
 import Admin from "@/pages/Admin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import Navbar from "./components/Navbar";
@@ -26,7 +26,7 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/interesting" component={Interesting} />
           <Route path="/interesting/:id" component={InterestingDetail} />
-          <Route path="/alternatives" component={Alternatives} />
+          <Route path="/locations" component={Locations} />
           <Route path="/contact" component={Contact} />
           <Route path="/admin" component={Admin} />
           <Route path="/admin/dashboard" component={AdminDashboard} />

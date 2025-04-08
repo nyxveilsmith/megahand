@@ -269,7 +269,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const emailSent = await sendEmail({
         to: "m3gahand@gmail.com",
-        from: "m3gahand@gmail.com", // This should be a verified sender in SendGrid
+        from: "m3gahand@gmail.com", // Using the specified email
         subject: `Contact Form: ${contactData.subject}`,
         html: `
           <h2>New Contact Form Submission</h2>

@@ -78,8 +78,8 @@ const Navbar = () => {
                   <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
                     Interesting
                   </Link>
-                  <Link href="/alternatives" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Alternatives
+                  <Link href="/locations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
+                    Locations
                   </Link>
                 </div>
               )}
@@ -139,8 +139,8 @@ const Navbar = () => {
           <Link href="/interesting" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/interesting' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
             Interesting
           </Link>
-          <Link href="/alternatives" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/alternatives' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
-            Alternatives
+          <Link href="/locations" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/locations' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
+            Locations
           </Link>
           <Link href="/contact" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/contact' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
             Contact
