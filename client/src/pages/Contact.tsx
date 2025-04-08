@@ -65,16 +65,36 @@ const Contact = () => {
     },
   });
   
-  function onSubmit(values: ContactFormValues) {
-    // In a real app, this would send the form data to the server
-    console.log(values);
-    
-    toast({
-      title: "Message Sent",
-      description: "Thank you for your message. We will get back to you soon!",
-    });
-    
-    form.reset();
+  async function onSubmit(values: ContactFormValues) {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+      
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message. We will get back to you soon!",
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -184,7 +204,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Email Us</h3>
-                    <p className="text-gray-600">info@megahand.az</p>
+                    <p className="text-gray-600">m3gahand@gmail.com</p>
                   </div>
                 </div>
                 

@@ -6,6 +6,7 @@ import { insertArticleSchema, insertLocationSchema } from "@shared/schema";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 import MemoryStore from "memorystore";
+import { sendEmail } from "./sendgrid";
 
 // Extend session
 declare module 'express-session' {
@@ -251,6 +252,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ message: "Location deleted successfully" });
     } catch (error) {
       res.status(500).json({ message: "Failed to delete location" });
+    }
+  });
+
+  // Contact form route
+  const contactFormSchema = z.object({
+    name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+    email: z.string().email({ message: "Please enter a valid email address" }),
+    subject: z.string().min(5, { message: "Subject must be at least 5 characters" }),
+    message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+  });
+
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const contactData = contactFormSchema.parse(req.body);
+      
+      const emailSent = await sendEmail({
+        to: "m3gahand@gmail.com",
+        from: "m3gahand@gmail.com", // This should be a verified sender in SendGrid
+        subject: `Contact Form: ${contactData.subject}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>From:</strong> ${contactData.name} (${contactData.email})</p>
+          <p><strong>Subject:</strong> ${contactData.subject}</p>
+          <p><strong>Message:</strong></p>
+          <p>${contactData.message.replace(/\n/g, '<br>')}</p>
+        `,
+      });
+      
+      if (emailSent) {
+        res.status(200).json({ message: "Your message has been sent successfully!" });
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const validationError = fromZodError(error);
+        return res.status(400).json({ message: validationError.message });
+      }
+      console.error("Contact form error:", error);
+      res.status(500).json({ message: "Failed to send message. Please try again later." });
     }
   });
 
