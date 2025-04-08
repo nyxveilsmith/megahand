@@ -1,4 +1,4 @@
-import { articles, type Article, type InsertArticle, users, type User, type InsertUser } from "@shared/schema";
+import { articles, type Article, type InsertArticle, users, type User, type InsertUser, locations, type Location, type InsertLocation } from "@shared/schema";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -14,19 +14,30 @@ export interface IStorage {
   createArticle(article: InsertArticle): Promise<Article>;
   updateArticle(id: number, article: Partial<InsertArticle>): Promise<Article | undefined>;
   deleteArticle(id: number): Promise<boolean>;
+  
+  // Location methods
+  getAllLocations(): Promise<Location[]>;
+  getLocationById(id: number): Promise<Location | undefined>;
+  createLocation(location: InsertLocation): Promise<Location>;
+  updateLocation(id: number, location: Partial<InsertLocation>): Promise<Location | undefined>;
+  deleteLocation(id: number): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private articlesList: Map<number, Article>;
+  private locationsList: Map<number, Location>;
   currentUserId: number;
   currentArticleId: number;
+  currentLocationId: number;
 
   constructor() {
     this.users = new Map();
     this.articlesList = new Map();
+    this.locationsList = new Map();
     this.currentUserId = 1;
     this.currentArticleId = 1;
+    this.currentLocationId = 1;
     
     // Add admin user by default
     this.createUser({
@@ -58,6 +69,8 @@ export class MemStorage implements IStorage {
       imageUrl: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       status: "published"
     });
+    
+    // We'll add default locations after all methods are defined
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -91,9 +104,13 @@ export class MemStorage implements IStorage {
     const id = this.currentArticleId++;
     const now = new Date();
     const article: Article = { 
-      ...insertArticle, 
       id, 
-      date: now
+      date: now,
+      title: insertArticle.title,
+      summary: insertArticle.summary,
+      content: insertArticle.content,
+      status: insertArticle.status || "published",
+      imageUrl: insertArticle.imageUrl || null
     };
     this.articlesList.set(id, article);
     return article;
@@ -115,6 +132,64 @@ export class MemStorage implements IStorage {
   async deleteArticle(id: number): Promise<boolean> {
     return this.articlesList.delete(id);
   }
+  
+  async getAllLocations(): Promise<Location[]> {
+    return Array.from(this.locationsList.values());
+  }
+  
+  async getLocationById(id: number): Promise<Location | undefined> {
+    return this.locationsList.get(id);
+  }
+  
+  async createLocation(insertLocation: InsertLocation): Promise<Location> {
+    const id = this.currentLocationId++;
+    const location: Location = { 
+      id,
+      name: insertLocation.name,
+      address: insertLocation.address,
+      description: insertLocation.description,
+      status: insertLocation.status || "active",
+      imageUrl: insertLocation.imageUrl || null,
+      phoneNumber: insertLocation.phoneNumber || null,
+      instagramAccount: insertLocation.instagramAccount || null,
+      whatsappNumber: insertLocation.whatsappNumber || null,
+      latitude: insertLocation.latitude || null,
+      longitude: insertLocation.longitude || null
+    };
+    this.locationsList.set(id, location);
+    return location;
+  }
+  
+  async updateLocation(id: number, locationUpdate: Partial<InsertLocation>): Promise<Location | undefined> {
+    const location = this.locationsList.get(id);
+    if (!location) return undefined;
+    
+    const updatedLocation: Location = {
+      ...location,
+      ...locationUpdate,
+    };
+    
+    this.locationsList.set(id, updatedLocation);
+    return updatedLocation;
+  }
+  
+  async deleteLocation(id: number): Promise<boolean> {
+    return this.locationsList.delete(id);
+  }
 }
 
 export const storage = new MemStorage();
+
+// Add default locations
+storage.createLocation({
+  name: "MegaHand Moscow Office",
+  address: "Bolshaya Dmitrovka, 32/1, Moscow, Russia",
+  description: "Our main office in the heart of Moscow. Visit us for consultations and services.",
+  phoneNumber: "+7 495 123-45-67",
+  instagramAccount: "@megahand_moscow",
+  whatsappNumber: "+7 495 123-45-67",
+  imageUrl: "https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  latitude: "55.7646",
+  longitude: "37.6117",
+  status: "active"
+});
