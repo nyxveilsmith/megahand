@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import ArticleCard from "@/components/ArticleCard";
 import { useArticles } from "@/hooks/useArticles";
+import { DownloadButton } from "@/components/DownloadButton";
 
 const Home = () => {
   const { articles, isLoading } = useArticles();
@@ -174,6 +175,23 @@ const Home = () => {
                 View All Locations
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* Download Section */}
+      <section id="download-section" className="py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 slide-in">Download Our Files</h2>
+            <div className="w-20 h-1 bg-yellow-400 mx-auto mb-8 slide-in"></div>
+            <p className="max-w-3xl mx-auto mb-10 slide-in">
+              Download all files for the Megahand website with just one click. Get everything you need in a single zip file.
+            </p>
+            
+            <div className="flex justify-center">
+              <DownloadButton />
+            </div>
           </div>
         </div>
       </section>

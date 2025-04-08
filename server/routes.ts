@@ -7,6 +7,7 @@ import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 import MemoryStore from "memorystore";
 import { sendEmail } from "./sendgrid";
+import { downloadAllFiles } from "./download";
 
 // Extend session
 declare module 'express-session' {
@@ -295,6 +296,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to send message. Please try again later." });
     }
   });
+  
+  // Download route - allows downloading all files as a zip
+  app.get("/api/download", downloadAllFiles);
 
   const httpServer = createServer(app);
 

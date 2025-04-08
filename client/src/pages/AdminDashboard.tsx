@@ -9,9 +9,10 @@ import AdminLocationForm from "@/components/AdminLocationForm";
 import { Article, Location } from "@shared/schema";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { PlusIcon, Pencil, Trash2, MapPin } from "lucide-react";
+import { PlusIcon, Pencil, Trash2, MapPin, Download } from "lucide-react";
 import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { DownloadButton } from "@/components/DownloadButton";
 
 const AdminDashboard = () => {
   const { isAuthenticated, username, logout, loading } = useContext(AuthContext);
@@ -206,6 +207,7 @@ const AdminDashboard = () => {
           <TabsList className="mb-4">
             <TabsTrigger value="articles">Articles</TabsTrigger>
             <TabsTrigger value="locations">Locations</TabsTrigger>
+            <TabsTrigger value="download">Download Files</TabsTrigger>
           </TabsList>
           
           <TabsContent value="articles" className="mt-6">
