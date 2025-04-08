@@ -50,7 +50,7 @@ const Navbar = () => {
                   <path d="M20 15V30L30 25V10L20 15Z" fill="#0066FF" />
                   <circle cx="20" cy="8" r="2" fill="white" />
                 </svg>
-                <span className="text-xl font-bold text-gray-900">MegaHand.ru</span>
+                <span className="text-xl font-bold text-gray-900">Megahand</span>
               </div>
             </Link>
           </div>

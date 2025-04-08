@@ -23,7 +23,7 @@ const LocationCard = ({ location, isAdmin = false, onEdit, onDelete }: LocationC
     <Card className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-lg">
       <div className="relative h-[200px] overflow-hidden">
         <img 
-          src={location.imageUrl || "https://via.placeholder.com/400x200?text=MegaHand+Location"} 
+          src={location.imageUrl || "https://via.placeholder.com/400x200?text=Megahand+Location"} 
           alt={location.name}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />

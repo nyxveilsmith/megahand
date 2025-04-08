@@ -24,7 +24,7 @@ const Footer = () => {
                 <path d="M20 15V30L30 25V10L20 15Z" fill="#0066FF" />
                 <circle cx="20" cy="8" r="2" fill="white" />
               </svg>
-              <h3 className="text-xl font-bold">MegaHand.ru</h3>
+              <h3 className="text-xl font-bold">Megahand</h3>
             </div>
             <p className="text-gray-400 mb-6">Your trusted source for interesting content and alternatives.</p>
             <div className="flex space-x-4">
@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <FaEnvelope className="mt-1 mr-3 text-gray-400" />
-                <span className="text-gray-400">info@megahand.ru</span>
+                <span className="text-gray-400">info@megahand.com</span>
               </li>
               <li className="flex items-start">
                 <FaPhone className="mt-1 mr-3 text-gray-400" />
@@ -96,7 +96,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-          <p className="text-gray-400">&copy; {new Date().getFullYear()} MegaHand.ru. All rights reserved.</p>
+          <p className="text-gray-400">&copy; {new Date().getFullYear()} Megahand. All rights reserved.</p>
         </div>
       </div>
     </footer>

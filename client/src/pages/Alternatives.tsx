@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useLocations } from "@/hooks/useLocations";
 import LocationCard from "@/components/LocationCard";
 import { MapPin, Loader2 } from "lucide-react";
+import { Location } from "@shared/schema";
 
 const Alternatives = () => {
   const { locations, isLoading } = useLocations();
