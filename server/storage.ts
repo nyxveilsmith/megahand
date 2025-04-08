@@ -147,6 +147,7 @@ export class MemStorage implements IStorage {
       id,
       name: insertLocation.name,
       address: insertLocation.address,
+      zipCode: insertLocation.zipCode || null,
       description: insertLocation.description,
       status: insertLocation.status || "active",
       imageUrl: insertLocation.imageUrl || null,
@@ -184,6 +185,7 @@ export const storage = new MemStorage();
 storage.createLocation({
   name: "MegaHand Moscow Office",
   address: "Bolshaya Dmitrovka, 32/1, Moscow, Russia",
+  zipCode: "127051",
   description: "Our main office in the heart of Moscow. Visit us for consultations and services.",
   phoneNumber: "+7 495 123-45-67",
   instagramAccount: "@megahand_moscow",

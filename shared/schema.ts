@@ -32,6 +32,7 @@ export const locations = pgTable("locations", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   address: text("address").notNull(),
+  zipCode: text("zip_code"),
   description: text("description").notNull(),
   phoneNumber: text("phone_number"),
   instagramAccount: text("instagram_account"),

@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Instagram, MessageCircle } from "lucide-react";
 
 // Extended location type with additional fields for UI convenience
-interface ExtendedLocation extends Location {
+// Map the database fields to UI friendly names
+interface ExtendedLocation extends Omit<Location, 'zipCode'> {
   mapUrl?: string | null;
   phone?: string | null;
   instagram?: string | null;
   whatsapp?: string | null;
+  zipCode: string | null;
 }
 
 interface LocationCardProps {
@@ -32,7 +34,7 @@ const LocationCard = ({ location, isAdmin = false, onEdit, onDelete }: LocationC
         <CardTitle className="text-xl text-primary">{location.name}</CardTitle>
         <CardDescription className="flex items-center gap-1">
           <MapPin size={16} className="text-muted-foreground" />
-          <span>{location.address}</span>
+          <span>{location.address}{location.zipCode ? `, ${location.zipCode}` : ''}</span>
         </CardDescription>
       </CardHeader>
       <CardContent className="pb-2 flex-grow">

@@ -17,17 +17,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 
 // Extended location type for UI
-interface ExtendedLocation extends Location {
+// Map the database fields to UI friendly names
+interface ExtendedLocation extends Omit<Location, 'zipCode'> {
   mapUrl?: string | null;
   phone?: string | null;
   instagram?: string | null;
   whatsapp?: string | null;
+  zipCode: string | null;
 }
 
 // Extended schema with validation and additional fields
 const formSchema = insertLocationSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
   address: z.string().min(5, "Address must be at least 5 characters"),
+  zipCode: z.string().optional(),
   mapUrl: z.string().url("Must be a valid URL").or(z.string().length(0)).optional(),
   imageUrl: z.string().url("Must be a valid URL").or(z.string().length(0)),
 });
@@ -37,6 +40,7 @@ type LocationFormValues = z.infer<typeof formSchema> & {
   phone?: string;
   instagram?: string;
   whatsapp?: string;
+  zipCode?: string;
 };
 
 interface AdminLocationFormProps {
@@ -59,6 +63,7 @@ const AdminLocationForm = ({
     defaultValues: {
       name: location?.name || "",
       address: location?.address || "",
+      zipCode: location?.zipCode || "",
       description: location?.description || "",
       mapUrl: location?.mapUrl || "",
       imageUrl: location?.imageUrl || "",
@@ -100,6 +105,20 @@ const AdminLocationForm = ({
                   <FormLabel>Address*</FormLabel>
                   <FormControl>
                     <Input placeholder="Full address" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="zipCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Zip Code</FormLabel>
+                  <FormControl>
+                    <Input placeholder="123456" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
