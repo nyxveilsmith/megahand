@@ -28,8 +28,26 @@ export const insertArticleSchema = createInsertSchema(articles).omit({
   date: true,
 });
 
+export const locations = pgTable("locations", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  address: text("address").notNull(),
+  description: text("description").notNull(),
+  imageUrl: text("image_url"),
+  latitude: text("latitude"),
+  longitude: text("longitude"),
+  status: text("status").default("active").notNull(),
+});
+
+export const insertLocationSchema = createInsertSchema(locations).omit({
+  id: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 export type InsertArticle = z.infer<typeof insertArticleSchema>;
 export type Article = typeof articles.$inferSelect;
+
+export type InsertLocation = z.infer<typeof insertLocationSchema>;
+export type Location = typeof locations.$inferSelect;
