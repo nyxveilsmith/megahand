@@ -270,6 +270,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const emailSent = await sendEmail({
         to: "m3gahand@gmail.com",
         from: "m3gahand@gmail.com", // Using the specified email
+        replyTo: contactData.email, // Set reply-to to user's email for direct response
         subject: `Contact Form: ${contactData.subject}`,
         html: `
           <h2>New Contact Form Submission</h2>

@@ -14,6 +14,7 @@ const transporter = nodemailer.createTransport({
 interface EmailParams {
   to: string;
   from: string;
+  replyTo?: string;
   subject: string;
   text?: string;
   html?: string;
@@ -24,6 +25,7 @@ export async function sendEmail(params: EmailParams): Promise<boolean> {
     const msg = {
       from: params.from,
       to: params.to,
+      replyTo: params.replyTo || params.from,
       subject: params.subject,
       text: params.text || params.subject,
       html: params.html || `<p>${params.subject}</p>`,

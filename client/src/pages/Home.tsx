@@ -110,7 +110,73 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      
+      {/* Locations Section */}
+      <section id="locations-preview" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Our Locations</h2>
+            <div className="w-20 h-1 bg-yellow-500 mx-auto mb-8 slide-in"></div>
+            <p className="text-gray-600 max-w-3xl mx-auto slide-in">
+              Find Megahand stores near you and visit us today.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Location 1 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md slide-in">
+              <div className="flex items-start">
+                <div className="bg-yellow-500 p-3 rounded-full text-white mr-4 flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">Baku City Center</h3>
+                  <p className="text-gray-600 mb-4">Visit our flagship store in the heart of Baku with our complete collection.</p>
+                  <Link href="/locations" className="text-blue-500 font-medium hover:text-blue-700 transition-colors duration-200 flex items-center">
+                    View Details
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            
+            {/* Location 2 */}
+            <div className="bg-gray-50 p-8 rounded-lg shadow-md slide-in">
+              <div className="flex items-start">
+                <div className="bg-yellow-500 p-3 rounded-full text-white mr-4 flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">Ganjlik Mall</h3>
+                  <p className="text-gray-600 mb-4">Shop our latest collections at our convenient mall location with extended hours.</p>
+                  <Link href="/locations" className="text-blue-500 font-medium hover:text-blue-700 transition-colors duration-200 flex items-center">
+                    View Details
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link href="/locations">
+              <Button className="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium btn-hover">
+                View All Locations
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
