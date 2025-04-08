@@ -13,10 +13,19 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Column */}
-          <div className="col-span-1 md:col-span-1">
-            <h3 className="text-xl font-bold mb-4">MegaHand.az</h3>
+          <div className="col-span-1">
+            <div className="flex items-center mb-4">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
+                <rect width="40" height="40" rx="8" fill="#0052CC" />
+                <path d="M10 10L20 5L30 10L20 15L10 10Z" fill="#FFD700" />
+                <path d="M10 10V25L20 30V15L10 10Z" fill="#0052CC" />
+                <path d="M20 15V30L30 25V10L20 15Z" fill="#0066FF" />
+                <circle cx="20" cy="8" r="2" fill="white" />
+              </svg>
+              <h3 className="text-xl font-bold">MegaHand.ru</h3>
+            </div>
             <p className="text-gray-400 mb-6">Your trusted source for interesting content and alternatives.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
@@ -66,18 +75,6 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Categories */}
-          <div>
-            <h4 className="text-lg font-medium mb-4">Categories</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Technology</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Health & Wellness</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Business</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Travel</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">Lifestyle</a></li>
-            </ul>
-          </div>
-          
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-medium mb-4">Contact Info</h4>
@@ -88,7 +85,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <FaEnvelope className="mt-1 mr-3 text-gray-400" />
-                <span className="text-gray-400">info@megahand.az</span>
+                <span className="text-gray-400">info@megahand.ru</span>
               </li>
               <li className="flex items-start">
                 <FaPhone className="mt-1 mr-3 text-gray-400" />
@@ -99,7 +96,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-          <p className="text-gray-400">&copy; {new Date().getFullYear()} MegaHand.az. All rights reserved.</p>
+          <p className="text-gray-400">&copy; {new Date().getFullYear()} MegaHand.ru. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -6,13 +6,34 @@ import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [location] = useLocation();
   const { isAuthenticated } = useContext(AuthContext);
   
   // Close mobile menu when changing routes
   useEffect(() => {
     setMobileMenuOpen(false);
+    setDropdownOpen(false);
   }, [location]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const dropdown = document.querySelector(".dropdown");
+      if (dropdown && !dropdown.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -20,7 +41,17 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold text-gray-900">MegaHand.az</span>
+              {/* MegaHand.ru logo with blue and yellow colors */}
+              <div className="flex items-center">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
+                  <rect width="40" height="40" rx="8" fill="#0052CC" />
+                  <path d="M10 10L20 5L30 10L20 15L10 10Z" fill="#FFD700" />
+                  <path d="M10 10V25L20 30V15L10 10Z" fill="#0052CC" />
+                  <path d="M20 15V30L30 25V10L20 15Z" fill="#0066FF" />
+                  <circle cx="20" cy="8" r="2" fill="white" />
+                </svg>
+                <span className="text-xl font-bold text-gray-900">MegaHand.ru</span>
+              </div>
             </Link>
           </div>
           
@@ -34,20 +65,31 @@ const Navbar = () => {
             
             {/* Dropdown Menu */}
             <div className="relative dropdown">
-              <button className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-primary transition-colors duration-200 flex items-center">
+              <button 
+                onClick={toggleDropdown}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-primary transition-colors duration-200 flex items-center"
+              >
                 More
-                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg 
+                  className={`ml-1 w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
-              <div className="dropdown-menu absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
-                <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
-                  Interesting
-                </Link>
-                <Link href="/alternatives" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
-                  Alternatives
-                </Link>
-              </div>
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20">
+                  <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
+                    Interesting
+                  </Link>
+                  <Link href="/alternatives" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
+                    Alternatives
+                  </Link>
+                </div>
+              )}
             </div>
             
             <Link href="/contact" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/contact' ? 'text-primary' : 'text-gray-900 hover:text-primary'} transition-colors duration-200`}>
@@ -77,16 +119,23 @@ const Navbar = () => {
               aria-expanded="false"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
+              <span className="sr-only">Open main menu</span>
+              {mobileMenuOpen ? (
+                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
       
       {/* Mobile menu */}
-      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white`}>
+      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-md`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <Link href="/" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/' ? 'text-primary' : 'text-gray-900 hover:text-primary hover:bg-gray-100'}`}>
             Main
