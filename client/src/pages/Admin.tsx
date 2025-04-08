@@ -120,9 +120,18 @@ const Admin = () => {
             </Button>
           </form>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex flex-col">
+          <div className="bg-blue-50 border border-blue-200 rounded-md p-3 mb-2 w-full">
+            <p className="text-sm font-semibold text-blue-700 text-center mb-1">
+              Admin Login Credentials
+            </p>
+            <p className="text-xs text-blue-600 text-center">
+              Username: <strong>admin</strong> <br />
+              Password: <strong>password</strong>
+            </p>
+          </div>
           <p className="text-xs text-gray-500 text-center w-full">
-            Note: Use "admin" / "password" for demo purposes
+            Use these exact credentials to access the admin dashboard
           </p>
         </CardFooter>
       </Card>

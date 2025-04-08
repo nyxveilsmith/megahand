@@ -48,11 +48,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (username: string, password: string): Promise<boolean> => {
     try {
-      const res = await apiRequest("POST", "/api/login", { username, password });
-      const data = await res.json();
+      console.log("Attempting login with:", { username, password });
+      
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+        credentials: "include",
+      });
+      
+      if (!response.ok) {
+        console.error("Login failed with status:", response.status);
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Error data:", errorData);
+        
+        toast({
+          title: "Login failed",
+          description: "Invalid username or password. Use 'admin' and 'password'",
+          variant: "destructive",
+        });
+        
+        return false;
+      }
+      
+      const data = await response.json();
+      console.log("Login successful:", data);
       
       setIsAuthenticated(true);
-      setUsername(data.username);
+      setUsername(data.username || username);
       
       toast({
         title: "Login successful",
@@ -65,7 +90,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       
       toast({
         title: "Login failed",
-        description: "Invalid username or password",
+        description: "Please try username 'admin' and password 'password'",
         variant: "destructive",
       });
       
