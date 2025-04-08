@@ -25,7 +25,7 @@ const Alternatives = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Alternatives</h1>
-          <div className="w-20 h-1 bg-green-500 mx-auto mb-8 slide-in"></div>
+          <div className="w-20 h-1 bg-yellow-500 mx-auto mb-8 slide-in"></div>
           <p className="text-gray-600 max-w-3xl mx-auto slide-in">
             Explore alternative solutions and approaches to common challenges.
           </p>

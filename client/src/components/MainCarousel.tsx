@@ -30,7 +30,7 @@ const MainCarousel = () => {
       backgroundImage: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
       buttonText: "Learn More",
       buttonLink: "/alternatives",
-      buttonColor: "bg-green-500 hover:bg-green-600"
+      buttonColor: "bg-yellow-500 hover:bg-yellow-600"
     },
     {
       title: "Connect With Us",

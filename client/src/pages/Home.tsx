@@ -116,7 +116,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Alternatives</h2>
-            <div className="w-20 h-1 bg-green-500 mx-auto mb-8 slide-in"></div>
+            <div className="w-20 h-1 bg-yellow-500 mx-auto mb-8 slide-in"></div>
             <p className="text-gray-600 max-w-3xl mx-auto slide-in">
               Explore alternative solutions and approaches to common challenges.
             </p>
@@ -126,7 +126,7 @@ const Home = () => {
             {/* Alternative 1 */}
             <div className="bg-gray-50 p-8 rounded-lg shadow-md slide-in">
               <div className="flex items-start">
-                <div className="bg-green-500 p-3 rounded-full text-white mr-4 flex items-center justify-center">
+                <div className="bg-yellow-500 p-3 rounded-full text-white mr-4 flex items-center justify-center">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                   </svg>
@@ -147,7 +147,7 @@ const Home = () => {
             {/* Alternative 2 */}
             <div className="bg-gray-50 p-8 rounded-lg shadow-md slide-in">
               <div className="flex items-start">
-                <div className="bg-green-500 p-3 rounded-full text-white mr-4 flex items-center justify-center">
+                <div className="bg-yellow-500 p-3 rounded-full text-white mr-4 flex items-center justify-center">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -169,7 +169,7 @@ const Home = () => {
           
           <div className="text-center mt-12">
             <Link href="/alternatives">
-              <Button className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium btn-hover">
+              <Button className="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium btn-hover">
                 Explore All Alternatives
               </Button>
             </Link>
