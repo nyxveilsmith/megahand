@@ -1,0 +1,121 @@
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+  const { isAuthenticated } = useContext(AuthContext);
+  
+  // Close mobile menu when changing routes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
+  return (
+    <nav className="bg-white shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="flex-shrink-0 flex items-center">
+              <span className="text-xl font-bold text-gray-900">MegaHand.az</span>
+            </Link>
+          </div>
+          
+          <div className="hidden md:flex items-center space-x-4">
+            <Link href="/" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/' ? 'text-primary' : 'text-gray-900 hover:text-primary'} transition-colors duration-200`}>
+              Main
+            </Link>
+            <Link href="/about" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/about' ? 'text-primary' : 'text-gray-900 hover:text-primary'} transition-colors duration-200`}>
+              About
+            </Link>
+            
+            {/* Dropdown Menu */}
+            <div className="relative dropdown">
+              <button className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-primary transition-colors duration-200 flex items-center">
+                More
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div className="dropdown-menu absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
+                <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
+                  Interesting
+                </Link>
+                <Link href="/alternatives" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">
+                  Alternatives
+                </Link>
+              </div>
+            </div>
+            
+            <Link href="/contact" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/contact' ? 'text-primary' : 'text-gray-900 hover:text-primary'} transition-colors duration-200`}>
+              Contact
+            </Link>
+            
+            {isAuthenticated ? (
+              <Link href="/admin/dashboard">
+                <Button size="sm" variant="default" className="ml-4 btn-hover">
+                  Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/admin">
+                <Button size="sm" variant="default" className="ml-4 btn-hover">
+                  Admin
+                </Button>
+              </Link>
+            )}
+          </div>
+          
+          {/* Mobile menu button */}
+          <div className="flex md:hidden items-center">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none"
+              aria-expanded="false"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      {/* Mobile menu */}
+      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white`}>
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          <Link href="/" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/' ? 'text-primary' : 'text-gray-900 hover:text-primary hover:bg-gray-100'}`}>
+            Main
+          </Link>
+          <Link href="/about" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/about' ? 'text-primary' : 'text-gray-900 hover:text-primary hover:bg-gray-100'}`}>
+            About
+          </Link>
+          <Link href="/interesting" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/interesting' ? 'text-primary' : 'text-gray-900 hover:text-primary hover:bg-gray-100'}`}>
+            Interesting
+          </Link>
+          <Link href="/alternatives" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/alternatives' ? 'text-primary' : 'text-gray-900 hover:text-primary hover:bg-gray-100'}`}>
+            Alternatives
+          </Link>
+          <Link href="/contact" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/contact' ? 'text-primary' : 'text-gray-900 hover:text-primary hover:bg-gray-100'}`}>
+            Contact
+          </Link>
+          {isAuthenticated ? (
+            <Link href="/admin/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-blue-600">
+              Dashboard
+            </Link>
+          ) : (
+            <Link href="/admin" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-blue-600">
+              Admin
+            </Link>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
