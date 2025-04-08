@@ -29,7 +29,7 @@ const MainCarousel = () => {
       description: "Find a location near you",
       backgroundImage: "/src/assets/Mega-Hand-agac.jpg",
       buttonText: "View Locations",
-      buttonLink: "/alternatives",
+      buttonLink: "/locations",
       buttonColor: "bg-yellow-500 hover:bg-yellow-600"
     },
     {
