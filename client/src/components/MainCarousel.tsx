@@ -17,25 +17,25 @@ const MainCarousel = () => {
   
   const slides: CarouselSlide[] = [
     {
-      title: "Welcome to MegaHand.az",
-      description: "Your trusted source for the most interesting content",
-      backgroundImage: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
+      title: "Welcome to Megahand",
+      description: "Your trusted source for quality European clothing",
+      backgroundImage: "/src/assets/reklam-vinil-Megahand-90.jpg",
       buttonText: "Discover More",
       buttonLink: "/interesting",
       buttonColor: "bg-primary hover:bg-blue-600"
     },
     {
-      title: "Explore Alternatives",
-      description: "Discover new possibilities and solutions",
-      backgroundImage: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
-      buttonText: "Learn More",
+      title: "Explore Our Stores",
+      description: "Find a location near you",
+      backgroundImage: "/src/assets/Mega-Hand-agac.jpg",
+      buttonText: "View Locations",
       buttonLink: "/alternatives",
       buttonColor: "bg-yellow-500 hover:bg-yellow-600"
     },
     {
       title: "Connect With Us",
-      description: "Stay updated with the latest news and trends",
-      backgroundImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
+      description: "Stay updated with the latest collections and promotions",
+      backgroundImage: "/src/assets/Logo.jpg",
       buttonText: "Contact Now",
       buttonLink: "/contact",
       buttonColor: "bg-amber-500 hover:bg-amber-600"

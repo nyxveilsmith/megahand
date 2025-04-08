@@ -25,15 +25,15 @@ const About = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4 slide-in">About MegaHand.az</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4 slide-in">About Megahand</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8 slide-in"></div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           <div className="slide-in">
             <img 
-              src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-              alt="About MegaHand.az" 
+              src="/src/assets/Mega-Hand-agac.jpg" 
+              alt="About Megahand" 
               className="rounded-lg shadow-lg w-full h-auto"
             />
           </div>
@@ -41,12 +41,12 @@ const About = () => {
           <div className="slide-in">
             <h2 className="text-2xl font-bold mb-4 text-gray-900">Our Mission</h2>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              MegaHand.az is dedicated to providing valuable and interesting content for our users. We strive to curate the most engaging articles, news, and alternatives to keep you informed and inspired.
+              Megahand is dedicated to providing high-quality European clothing for the whole family. We strive to offer a wide selection of fashionable items at competitive prices to keep our customers looking their best.
             </p>
             
             <h2 className="text-2xl font-bold mb-4 text-gray-900">Our Vision</h2>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              We aim to become the leading platform for interesting content and alternatives in the region. Our team works tirelessly to ensure that you always have access to the latest and most relevant information.
+              We aim to become the leading clothing retailer in Azerbaijan, known for quality, affordability, and excellent customer service. Our team works tirelessly to bring the latest European fashion trends to our stores.
             </p>
           </div>
         </div>
@@ -63,7 +63,7 @@ const About = () => {
               </div>
               <h3 className="text-xl font-bold mb-2 text-gray-900 text-center">Quality</h3>
               <p className="text-gray-600 text-center">
-                We are committed to delivering high-quality, well-researched content that adds value to our readers' lives.
+                We are committed to providing only the highest quality European clothing that meets our rigorous standards for materials and craftsmanship.
               </p>
             </div>
             

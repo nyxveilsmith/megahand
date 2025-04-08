@@ -36,30 +36,24 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-primary text-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               {/* MegaHand.ru logo with blue and yellow colors */}
               <div className="flex items-center">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
-                  <rect width="40" height="40" rx="8" fill="#0052CC" />
-                  <path d="M10 10L20 5L30 10L20 15L10 10Z" fill="#FFD700" />
-                  <path d="M10 10V25L20 30V15L10 10Z" fill="#0052CC" />
-                  <path d="M20 15V30L30 25V10L20 15Z" fill="#0066FF" />
-                  <circle cx="20" cy="8" r="2" fill="white" />
-                </svg>
-                <span className="text-xl font-bold text-gray-900">Megahand</span>
+                <img src="/src/assets/Logo.jpg" alt="Megahand Logo" className="h-10 mr-2" />
+                <span className="text-xl font-bold text-white">Megahand</span>
               </div>
             </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/' ? 'text-primary' : 'text-gray-900 hover:text-primary'} transition-colors duration-200`}>
+            <Link href="/" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/' ? 'text-yellow-400' : 'text-white hover:text-yellow-400'} transition-colors duration-200`}>
               Main
             </Link>
-            <Link href="/about" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/about' ? 'text-primary' : 'text-gray-900 hover:text-primary'} transition-colors duration-200`}>
+            <Link href="/about" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/about' ? 'text-yellow-400' : 'text-white hover:text-yellow-400'} transition-colors duration-200`}>
               About
             </Link>
             
@@ -67,7 +61,7 @@ const Navbar = () => {
             <div className="relative dropdown">
               <button 
                 onClick={toggleDropdown}
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:text-primary transition-colors duration-200 flex items-center"
+                className="px-3 py-2 rounded-md text-sm font-medium text-white hover:text-yellow-400 transition-colors duration-200 flex items-center"
               >
                 More
                 <svg 

@@ -17,13 +17,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-1">
             <div className="flex items-center mb-4">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
-                <rect width="40" height="40" rx="8" fill="#0052CC" />
-                <path d="M10 10L20 5L30 10L20 15L10 10Z" fill="#FFD700" />
-                <path d="M10 10V25L20 30V15L10 10Z" fill="#0052CC" />
-                <path d="M20 15V30L30 25V10L20 15Z" fill="#0066FF" />
-                <circle cx="20" cy="8" r="2" fill="white" />
-              </svg>
+              <img src="/src/assets/Logo.jpg" alt="Megahand Logo" className="h-10 mr-2" />
               <h3 className="text-xl font-bold">Megahand</h3>
             </div>
             <p className="text-gray-400 mb-6">Your trusted source for interesting content and alternatives.</p>
