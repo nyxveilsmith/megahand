@@ -14,6 +14,12 @@ import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DownloadButton } from "@/components/DownloadButton";
 
+// Import assets
+import LogoImage from "@assets/Logo.jpg";
+import MegaHandTree from "@assets/Mega-Hand-agac.jpg";
+import MegaHandVinyl from "@assets/reklam-vinil-Megahand-90.jpg";
+import FaviconImage from "@assets/favicon.png";
+
 const AdminDashboard = () => {
   const { isAuthenticated, username, logout, loading } = useContext(AuthContext);
   const [_, setLocation] = useLocation();
@@ -386,6 +392,50 @@ const AdminDashboard = () => {
                   </table>
                 </div>
               )}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="download" className="mt-6">
+            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Download All Project Files</h2>
+                
+                <div className="max-w-2xl mx-auto">
+                  <div className="grid gap-6 mb-8">
+                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                      <h3 className="text-lg font-medium mb-4">Project Files</h3>
+                      <p className="text-gray-600 mb-6">
+                        Download the complete website project including all source code, images, configuration files, and assets.
+                      </p>
+                      <div className="flex justify-center">
+                        <DownloadButton />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8">
+                    <h3 className="text-lg font-medium mb-4">Included Assets</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src={LogoImage} alt="Megahand Logo" className="h-20 w-auto mx-auto mb-2" />
+                        <p className="text-sm text-center">Logo.jpg</p>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src={MegaHandTree} alt="Megahand Tree" className="h-20 w-auto mx-auto mb-2" />
+                        <p className="text-sm text-center">Mega-Hand-agac.jpg</p>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src={MegaHandVinyl} alt="Megahand Vinyl" className="h-20 w-auto mx-auto mb-2" />
+                        <p className="text-sm text-center">reklam-vinil-Megahand-90.jpg</p>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src={FaviconImage} alt="Favicon" className="h-20 w-auto mx-auto mb-2" />
+                        <p className="text-sm text-center">favicon.png</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
