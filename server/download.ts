@@ -15,19 +15,24 @@ export async function downloadAllFiles(req: Request, res: Response) {
         const filePath = path.join(dirPath, file);
         const stat = fs.statSync(filePath);
         
-        // Skip node_modules and .git directories
-        if (file === 'node_modules' || file === '.git') continue;
+        // Skip unwanted directories and files
+        if (file === 'node_modules' || file === '.git' || file === 'megahand-website.zip') continue;
         
         if (stat.isDirectory()) {
-          // Recursively add subdirectories
-          const folder = zipFolder.folder(file);
-          if (folder) {
-            addFilesToZip(filePath, folder);
+          // Create folder in zip
+          const newZipFolder = zipFolder.folder(file);
+          if (newZipFolder) {
+            addFilesToZip(filePath, newZipFolder);
           }
         } else {
-          // Add file to zip
-          const fileData = fs.readFileSync(filePath);
-          zipFolder.file(file, fileData);
+          try {
+            // Add file to zip with relative path
+            const fileData = fs.readFileSync(filePath);
+            const relativePath = path.relative('./', filePath);
+            zipFolder.file(relativePath, fileData);
+          } catch (err) {
+            console.error(`Error adding file ${filePath}:`, err);
+          }
         }
       }
     };
