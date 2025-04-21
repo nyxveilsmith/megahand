@@ -38,7 +38,7 @@ const Home = () => {
       <section id="about-preview" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">About MegaHand.az</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">MegaHand.az Haqqında</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8 slide-in"></div>
           </div>
           
@@ -46,20 +46,20 @@ const Home = () => {
             <div className="slide-in">
               <img 
                 src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                alt="About MegaHand.az" 
+                alt="MegaHand.az Haqqında" 
                 className="rounded-lg shadow-lg w-full h-auto"
               />
             </div>
             
             <div className="slide-in">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Mission</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Bizim Missiyamız</h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                MegaHand.az is dedicated to providing valuable and interesting content for our users. We strive to curate the most engaging articles and news to keep you informed and inspired.
+                MegaHand.az müştərilərimiz üçün keyfiyyətli Avropa geyimləri təqdim etməyə həsr olunub. Biz sizin məlumatlı və ilhamlı olmağınız üçün ən cəlbedici məqalələr və xəbərləri təqdim edirik.
               </p>
               
               <Link href="/about">
                 <Button className="px-6 py-3 bg-primary text-white rounded-lg font-medium btn-hover">
-                  Learn More About Us
+                  Haqqımızda Ətraflı
                 </Button>
               </Link>
             </div>
@@ -71,10 +71,10 @@ const Home = () => {
       <section id="articles-preview" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Interesting Articles</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Maraqlı Məqalələr</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8 slide-in"></div>
             <p className="text-gray-600 max-w-3xl mx-auto slide-in">
-              Discover our collection of fascinating articles and news that will keep you informed and entertained.
+              Sizi məlumatlandıracaq və əyləndirəcək maraqlı məqalələr və xəbərlər kolleksiyamızı kəşf edin.
             </p>
           </div>
           
@@ -179,22 +179,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Download Section */}
-      <section id="download-section" className="py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 slide-in">Download Our Files</h2>
-            <div className="w-20 h-1 bg-yellow-400 mx-auto mb-8 slide-in"></div>
-            <p className="max-w-3xl mx-auto mb-10 slide-in">
-              Download all files for the Megahand website with just one click. Get everything you need in a single zip file.
-            </p>
-            
-            <div className="flex justify-center">
-              <DownloadButton />
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </>
   );
 };

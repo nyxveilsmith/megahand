@@ -50,10 +50,10 @@ const Navbar = () => {
           
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
-              Main
+              Ana Səhifə
             </Link>
             <Link href="/about" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/about' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
-              About
+              Haqqımızda
             </Link>
             
             {/* Dropdown Menu */}
@@ -62,7 +62,7 @@ const Navbar = () => {
                 onClick={toggleDropdown}
                 className="px-3 py-2 rounded-md text-sm font-medium text-white hover:text-yellow-300 transition-colors duration-200 flex items-center"
               >
-                More
+                Ətraflı
                 <svg 
                   className={`ml-1 w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} 
                   fill="none" 
@@ -76,23 +76,23 @@ const Navbar = () => {
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20">
                   <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Interesting
+                    Maraqlı
                   </Link>
                   <Link href="/locations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Locations
+                    Mağazalar
                   </Link>
                 </div>
               )}
             </div>
             
             <Link href="/contact" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/contact' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
-              Contact
+              Əlaqə
             </Link>
             
             {isAuthenticated ? (
               <Link href="/admin/dashboard">
                 <Button size="sm" variant="default" className="ml-4 btn-hover">
-                  Dashboard
+                  İdarə Paneli
                 </Button>
               </Link>
             ) : (
