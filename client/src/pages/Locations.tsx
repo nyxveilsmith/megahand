@@ -79,7 +79,7 @@ const Locations = () => {
         </div>
         
         <div className="bg-yellow-50 p-8 rounded-lg shadow-md slide-in">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center">Why Visit Our Locations?</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center">Niyə Filiallarımızı Ziyarət Etməlisiniz?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="bg-yellow-500 w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-4">
@@ -87,9 +87,9 @@ const Locations = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Personal Service</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Şəxsi Xidmət</h3>
               <p className="text-gray-600">
-                Receive personalized assistance and expert advice from our knowledgeable staff.
+                Təcrübəli işçilərimizdən fərdi yardım və ekspert məsləhətləri alın.
               </p>
             </div>
             
@@ -99,9 +99,9 @@ const Locations = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">See Products In Person</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Məhsulları Canlı Görün</h3>
               <p className="text-gray-600">
-                Experience our products firsthand before making a purchase decision.
+                Alış-verişdən əvvəl məhsullarımızı birbaşa təcrübə edin.
               </p>
             </div>
             
@@ -111,9 +111,9 @@ const Locations = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Immediate Availability</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Dərhal Əldə Etmək</h3>
               <p className="text-gray-600">
-                Take your purchases home immediately without waiting for delivery.
+                Çatdırılma gözləmədən alış-verişinizi dərhal götürün.
               </p>
             </div>
           </div>

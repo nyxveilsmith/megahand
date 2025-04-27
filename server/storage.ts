@@ -45,28 +45,44 @@ export class MemStorage implements IStorage {
       password: "password" // In a real app, this would be hashed
     });
     
-    // Add some default articles
+    // Add default articles in Azerbaijani
     this.createArticle({
-      title: "Latest Tech Innovations",
-      summary: "Discover the cutting-edge technologies that are shaping our future. From AI advancements to new sustainable energy solutions...",
-      content: "This is a detailed content of the article about the latest tech innovations. It would include several paragraphs about AI, sustainable energy, quantum computing, and other emerging technologies.",
+      title: "Yeni Mövsüm Kolleksiyası",
+      summary: "2024-cü ilin yaz-yay kolleksiyasında ən son dəb tendensiyaları və rəng kombinasiyaları ilə tanış olun...",
+      content: "Yeni mövsüm kolleksiyamızda təqdim olunan geyimlər müasir üslubla klassik elementləri özündə birləşdirir. Kolleksiyada parlaq rənglər, rahat parçalar və innovativ dizaynlar üstünlük təşkil edir.",
       imageUrl: "https://images.unsplash.com/photo-1581090700227-8e3b68af7c63?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       status: "published"
     });
     
     this.createArticle({
-      title: "Health and Wellness Trends",
-      summary: "Stay informed about the latest health and wellness practices that can improve your quality of life. From nutrition to fitness...",
-      content: "This is a detailed content of the article about health and wellness trends. It would include information about nutrition, fitness routines, mental health practices, and preventive healthcare strategies.",
+      title: "Davamlı Moda Təşəbbüslərimiz",
+      summary: "Ətraf mühitə qayğı ilə yanaşaraq hazırladığımız ekoloji təmiz kolleksiyalarımız haqqında məlumat əldə edin...",
+      content: "Megahand olaraq davamlı moda sahəsində öncül olmağı hədəfləyirik. Təbii parçalardan istifadə, tullantıların azaldılması və ətraf mühitin qorunması bizim əsas prioritetlərimizdəndir.",
       imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       status: "published"
     });
     
     this.createArticle({
-      title: "Hidden Travel Gems",
-      summary: "Explore lesser-known but breathtaking destinations that should be on your travel bucket list. From secluded beaches to charming villages...",
-      content: "This is a detailed content of the article about hidden travel gems. It would include descriptions of secluded beaches, charming villages, mountain retreats, and other less-known but amazing travel destinations.",
+      title: "Uşaq Geyimləri Bələdçisi",
+      summary: "Uşaqlarınız üçün ən rahat və keyfiyyətli geyimləri seçərkən diqqət etməli olduğunuz məqamlar...",
+      content: "Uşaq geyimlərini seçərkən parçanın keyfiyyəti, rahatlığı və davamlılığı əsas faktorlardır. Bu məqalədə sizə uşaq geyimlərini seçərkən kömək edəcək məsləhətlər verəcəyik.",
       imageUrl: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      status: "published"
+    });
+    
+    this.createArticle({
+      title: "İdman Geyimləri Seçimi",
+      summary: "İdmanla məşğul olarkən düzgün geyim seçiminin performansınıza təsiri və əhəmiyyəti...",
+      content: "İdman geyimləri seçərkən nəfəs alan parçalar, rahat kəsimlər və mövsümə uyğunluq əsas götürülməlidir. Məqalədə müxtəlif idman növləri üçün ən uyğun geyim seçimləri haqqında məlumat verəcəyik.",
+      imageUrl: "https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      status: "published"
+    });
+    
+    this.createArticle({
+      title: "Yay Trendləri 2024",
+      summary: "Bu yay mövsümündə öndə olacaq rənglər, modellər və aksessuarlar haqqında hərtərəfli bələdçi...",
+      content: "2024-cü ilin yay mövsümü canlı rənglər, rahat siluetlər və təbii materiallarla yadda qalacaq. Məqalədə mövsümün əsas trendləri və onları necə kombinə edə biləcəyiniz haqqında məlumatlar tapacaqsınız.",
+      imageUrl: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       status: "published"
     });
     

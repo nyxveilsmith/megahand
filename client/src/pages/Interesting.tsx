@@ -70,9 +70,9 @@ const Interesting = () => {
           <div className="text-center mt-12">
             <Button
               className="px-6 py-3 bg-primary text-white rounded-lg font-medium btn-hover"
-              disabled
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              Load More Articles
+              Daha Çox Məqalə
             </Button>
           </div>
         )}
