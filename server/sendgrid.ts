@@ -1,13 +1,13 @@
+
 import nodemailer from 'nodemailer';
 
-// Create a transporter using Brevo SMTP settings
 const transporter = nodemailer.createTransport({
   host: 'smtp-relay.brevo.com',
   port: 587,
-  secure: false, // true for 465, false for other ports
+  secure: false,
   auth: {
-    user: '89d402001@smtp-brevo.com', // Brevo SMTP login
-    pass: 'f1tE5qcn0xThNBd', // Brevo SMTP password
+    user: process.env.EMAIL_FROM,
+    pass: process.env.SENDGRID_API_KEY
   },
 });
 
