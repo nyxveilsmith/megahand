@@ -270,15 +270,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const emailSent = await sendEmail({
         to: "m3gahand@gmail.com",
-        from: "m3gahand@gmail.com", // Using the specified email
-        replyTo: contactData.email, // Set reply-to to user's email for direct response
-        subject: `Contact Form: ${contactData.subject}`,
+        from: "m3gahand@gmail.com",
+        replyTo: contactData.email,
+        subject: `Yeni Mesaj: ${contactData.name} - ${contactData.subject}`,
         html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>From:</strong> ${contactData.name} (${contactData.email})</p>
-          <p><strong>Subject:</strong> ${contactData.subject}</p>
-          <p><strong>Message:</strong></p>
-          <p>${contactData.message.replace(/\n/g, '<br>')}</p>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333;">Yeni Vebsayt Mesajı</h2>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 5px;">
+              <p><strong>Göndərən:</strong> ${contactData.name}</p>
+              <p><strong>Email:</strong> ${contactData.email}</p>
+              <p><strong>Mövzu:</strong> ${contactData.subject}</p>
+              <p><strong>Mesaj:</strong></p>
+              <div style="background: white; padding: 15px; border-radius: 5px;">
+                ${contactData.message.replace(/\n/g, '<br>')}
+              </div>
+            </div>
+            <p style="color: #666; font-size: 12px; margin-top: 20px;">Bu mesaj Megahand vebsaytından avtomatik göndərilib</p>
+          </div>
         `,
       });
       
