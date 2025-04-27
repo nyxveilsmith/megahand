@@ -25,10 +25,19 @@ import {
 } from "react-icons/fa";
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Ad ən azı 2 simvoldan ibarət olmalıdır" }),
-  email: z.string().email({ message: "Xahiş edirik, düzgün email ünvanı daxil edin" }),
-  subject: z.string().min(5, { message: "Mövzu ən azı 5 simvoldan ibarət olmalıdır" }),
-  message: z.string().min(10, { message: "Mesaj ən azı 10 simvoldan ibarət olmalıdır" }),
+  name: z.string()
+    .min(2, { message: "Ad ən azı 2 simvoldan ibarət olmalıdır" })
+    .max(50, { message: "Ad 50 simvoldan çox ola bilməz" })
+    .regex(/^[a-zA-ZəƏıİöÖüÜğĞçÇşŞ\s]+$/, { message: "Ad yalnız hərflərdən ibarət olmalıdır" }),
+  email: z.string()
+    .email({ message: "Xahiş edirik, düzgün email ünvanı daxil edin" })
+    .refine(email => email.endsWith('@gmail.com'), { message: "Yalnız Gmail ünvanları qəbul edilir" }),
+  subject: z.string()
+    .min(5, { message: "Mövzu ən azı 5 simvoldan ibarət olmalıdır" })
+    .max(100, { message: "Mövzu 100 simvoldan çox ola bilməz" }),
+  message: z.string()
+    .min(10, { message: "Mesaj ən azı 10 simvoldan ibarət olmalıdır" })
+    .max(1000, { message: "Mesaj 1000 simvoldan çox ola bilməz" }),
 });
 
 type ContactFormValues = z.infer<typeof formSchema>;

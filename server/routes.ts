@@ -19,6 +19,30 @@ declare module 'express-session' {
 
 const SessionStore = MemoryStore(session);
 
+const rateLimitStore = {}; // Simple in-memory store for rate limiting
+
+const isRateLimited = (ip) => {
+  if (!rateLimitStore[ip]) {
+    rateLimitStore[ip] = { count: 0, lastRequest: 0 };
+  }
+
+  const entry = rateLimitStore[ip];
+  const now = Date.now();
+
+  if (now - entry.lastRequest < 3600000) { // 1 hour
+    entry.count++;
+    if (entry.count > 5) {
+      return true; // Rate limited
+    }
+  } else {
+    entry.count = 1;
+  }
+
+  entry.lastRequest = now;
+  return false;
+};
+
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Configure session middleware
   app.use(
@@ -46,20 +70,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/login", async (req, res) => {
     try {
       const { username, password } = req.body;
-      
+
       if (!username || !password) {
         return res.status(400).json({ message: "Username and password are required" });
       }
-      
+
       const user = await storage.getUserByUsername(username);
-      
+
       if (!user || user.password !== password) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      
+
       req.session.userId = user.id;
       req.session.username = user.username;
-      
+
       res.json({ message: "Login successful", username: user.username });
     } catch (error) {
       res.status(500).json({ message: "Server error" });
@@ -100,13 +124,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid article ID" });
       }
-      
+
       const article = await storage.getArticleById(id);
-      
+
       if (!article) {
         return res.status(404).json({ message: "Article not found" });
       }
-      
+
       res.json(article);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch article" });
@@ -133,14 +157,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid article ID" });
       }
-      
+
       const articleData = insertArticleSchema.partial().parse(req.body);
       const updatedArticle = await storage.updateArticle(id, articleData);
-      
+
       if (!updatedArticle) {
         return res.status(404).json({ message: "Article not found" });
       }
-      
+
       res.json(updatedArticle);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -157,13 +181,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid article ID" });
       }
-      
+
       const success = await storage.deleteArticle(id);
-      
+
       if (!success) {
         return res.status(404).json({ message: "Article not found" });
       }
-      
+
       res.json({ message: "Article deleted successfully" });
     } catch (error) {
       res.status(500).json({ message: "Failed to delete article" });
@@ -186,13 +210,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid location ID" });
       }
-      
+
       const location = await storage.getLocationById(id);
-      
+
       if (!location) {
         return res.status(404).json({ message: "Location not found" });
       }
-      
+
       res.json(location);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch location" });
@@ -219,14 +243,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid location ID" });
       }
-      
+
       const locationData = insertLocationSchema.partial().parse(req.body);
       const updatedLocation = await storage.updateLocation(id, locationData);
-      
+
       if (!updatedLocation) {
         return res.status(404).json({ message: "Location not found" });
       }
-      
+
       res.json(updatedLocation);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -243,13 +267,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid location ID" });
       }
-      
+
       const success = await storage.deleteLocation(id);
-      
+
       if (!success) {
         return res.status(404).json({ message: "Location not found" });
       }
-      
+
       res.json({ message: "Location deleted successfully" });
     } catch (error) {
       res.status(500).json({ message: "Failed to delete location" });
@@ -266,8 +290,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/contact", async (req, res) => {
     try {
+      // Check rate limiting
+      const clientIp = req.ip || req.socket.remoteAddress || 'unknown';
+      if (isRateLimited(clientIp)) {
+        return res.status(429).json({ 
+          message: "Çox sayda mesaj göndərdiniz. Zəhmət olmasa bir saat sonra yenidən cəhd edin." 
+        });
+      }
+
       const contactData = contactFormSchema.parse(req.body);
-      
+
+      // Additional validation
+      if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(contactData.email)) {
+        return res.status(400).json({ message: "Yalnız Gmail ünvanları qəbul edilir" });
+      }
+
       const emailSent = await sendEmail({
         to: "m3gahand@gmail.com",
         from: "m3gahand@gmail.com",
@@ -289,7 +326,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           </div>
         `,
       });
-      
+
       if (emailSent) {
         res.status(200).json({ message: "Your message has been sent successfully!" });
       } else {
@@ -304,7 +341,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to send message. Please try again later." });
     }
   });
-  
+
   // Download route - allows downloading all files as a zip
   app.get("/api/download", downloadAllFiles);
 
