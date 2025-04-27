@@ -28,10 +28,10 @@ const Interesting = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Interesting Articles</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Maraqlı Məqalələr</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8 slide-in"></div>
           <p className="text-gray-600 max-w-3xl mx-auto slide-in">
-            Discover our collection of fascinating articles and news that will keep you informed and entertained.
+            Sizi məlumatlandıracaq və əyləndirəcək maraqlı məqalələr və xəbərlər kolleksiyamızı kəşf edin.
           </p>
         </div>
         
@@ -53,9 +53,9 @@ const Interesting = () => {
           </div>
         ) : articles.length === 0 ? (
           <div className="text-center py-16">
-            <h3 className="text-xl font-medium text-gray-700 mb-4">No articles found</h3>
+            <h3 className="text-xl font-medium text-gray-700 mb-4">Məqalə tapılmadı</h3>
             <p className="text-gray-500">
-              Check back later for new and interesting content.
+              Yeni və maraqlı məzmun üçün yenidən yoxlayın.
             </p>
           </div>
         ) : (
