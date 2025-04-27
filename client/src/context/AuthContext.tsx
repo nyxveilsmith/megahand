@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         
         toast({
           title: "Login failed",
-          description: "Invalid username or password. Use 'admin' and 'password'",
+          description: "Invalid username or password. Use 'AdminMega' and '121224MM'",
           variant: "destructive",
         });
         

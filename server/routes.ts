@@ -75,11 +75,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Username and password are required" });
       }
 
-      const user = await storage.getUserByUsername(username);
-
-      if (!user || user.password !== password) {
+      // Hard-coded admin credentials
+      if (username !== "AdminMega" || password !== "121224MM") {
         return res.status(401).json({ message: "Invalid credentials" });
       }
+
+      const user = { id: 1, username: "AdminMega" };
 
       req.session.userId = user.id;
       req.session.username = user.username;
