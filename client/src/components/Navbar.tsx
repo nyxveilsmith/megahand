@@ -76,10 +76,10 @@ const Navbar = () => {
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20">
                   <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Maraqlı
+                    Məqalələr
                   </Link>
                   <Link href="/locations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Mağazalar
+                    Filiallar
                   </Link>
                 </div>
               )}

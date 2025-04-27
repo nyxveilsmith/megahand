@@ -38,7 +38,7 @@ const Home = () => {
       <section id="about-preview" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">MegaHand.az Haqqında</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">MegaHand Haqqında</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8 slide-in"></div>
           </div>
           
@@ -105,7 +105,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Link href="/interesting">
               <Button className="px-6 py-3 bg-primary text-white rounded-lg font-medium btn-hover">
-                View All Articles
+                Daha çox
               </Button>
             </Link>
           </div>
@@ -116,10 +116,10 @@ const Home = () => {
       <section id="locations-preview" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Our Locations</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 slide-in">Filiallar</h2>
             <div className="w-20 h-1 bg-yellow-500 mx-auto mb-8 slide-in"></div>
             <p className="text-gray-600 max-w-3xl mx-auto slide-in">
-              Find Megahand stores near you and visit us today.
+              Sizə yaxın Megahand mağazalarını tapın və bu gün bizə müraciət edin.
             </p>
           </div>
           
@@ -135,9 +135,9 @@ const Home = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-3 text-gray-900">Baku City Center</h3>
-                  <p className="text-gray-600 mb-4">Visit our flagship store in the heart of Baku with our complete collection.</p>
+                  <p className="text-gray-600 mb-4">Tam kolleksiyamızla Bakının mərkəzində yerləşən flaqman mağazamıza baş çəkin.</p>
                   <Link href="/locations" className="text-blue-500 font-medium hover:text-blue-700 transition-colors duration-200 flex items-center">
-                    View Details
+                    Daha ətraflı
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -157,9 +157,9 @@ const Home = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-3 text-gray-900">Ganjlik Mall</h3>
-                  <p className="text-gray-600 mb-4">Shop our latest collections at our convenient mall location with extended hours.</p>
+                  <p className="text-gray-600 mb-4">Ən son kolleksiyalarımızı rahat ticarət mərkəzimizdə uzun saatlarla alış-veriş edin.</p>
                   <Link href="/locations" className="text-blue-500 font-medium hover:text-blue-700 transition-colors duration-200 flex items-center">
-                    View Details
+                    Daha ətraflı
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -172,7 +172,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Link href="/locations">
               <Button className="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium btn-hover">
-                View All Locations
+                Bütün Filiallar
               </Button>
             </Link>
           </div>
