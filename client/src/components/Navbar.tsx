@@ -20,9 +20,8 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center">
                 <img src="/src/assets/Logo.jpg" alt="Megahand Logo" className="h-10" />
-                <span className="text-white font-semibold text-sm">Megahand - Avropa Geyim Mağazaları Şəbəkəsi</span>
               </div>
             </Link>
           </div>
