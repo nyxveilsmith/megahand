@@ -6,34 +6,13 @@ import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [location] = useLocation();
   const { isAuthenticated } = useContext(AuthContext);
-  
+
   // Close mobile menu when changing routes
   useEffect(() => {
     setMobileMenuOpen(false);
-    setDropdownOpen(false);
   }, [location]);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const dropdown = document.querySelector(".dropdown");
-      if (dropdown && !dropdown.contains(event.target as Node)) {
-        setDropdownOpen(false);
-      }
-    };
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
 
   return (
     <nav className="bg-[#0057a6] text-white shadow-md sticky top-0 z-50">
@@ -41,13 +20,12 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              {/* MegaHand.ru logo with blue and yellow colors */}
               <div className="flex items-center">
                 <img src="/src/assets/Logo.jpg" alt="Megahand Logo" className="h-10" />
               </div>
             </Link>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
               Ana Səhifə
@@ -55,40 +33,16 @@ const Navbar = () => {
             <Link href="/about" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/about' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
               Haqqımızda
             </Link>
-            
-            {/* Dropdown Menu */}
-            <div className="relative dropdown">
-              <button 
-                onClick={toggleDropdown}
-                className="px-3 py-2 rounded-md text-sm font-medium text-white hover:text-yellow-300 transition-colors duration-200 flex items-center"
-              >
-                Ətraflı
-                <svg 
-                  className={`ml-1 w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="white" 
-                  viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              {dropdownOpen && (
-                <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20">
-                  <Link href="/interesting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Məqalələr
-                  </Link>
-                  <Link href="/locations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0057a6] hover:text-white">
-                    Filiallar
-                  </Link>
-                </div>
-              )}
-            </div>
-            
+            <Link href="/interesting" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/interesting' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
+              Məqalələr
+            </Link>
+            <Link href="/locations" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/locations' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
+              Filiallar
+            </Link>
             <Link href="/contact" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/contact' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
               Əlaqə
             </Link>
-            
+
             {isAuthenticated ? (
               <Link href="/admin/dashboard">
                 <Button size="sm" variant="default" className="ml-4 btn-hover">
@@ -103,7 +57,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-          
+
           {/* Mobile menu button */}
           <div className="flex md:hidden items-center">
             <button
@@ -126,28 +80,28 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile menu */}
       <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-md`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <Link href="/" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
-            Main
+            Ana Səhifə
           </Link>
           <Link href="/about" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/about' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
-            About
+            Haqqımızda
           </Link>
           <Link href="/interesting" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/interesting' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
-            Interesting
+            Məqalələr
           </Link>
           <Link href="/locations" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/locations' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
-            Locations
+            Filiallar
           </Link>
           <Link href="/contact" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/contact' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
-            Contact
+            Əlaqə
           </Link>
           {isAuthenticated ? (
             <Link href="/admin/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#0057a6] hover:bg-[#004d93]">
-              Dashboard
+              İdarə Paneli
             </Link>
           ) : (
             <Link href="/admin" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#0057a6] hover:bg-[#004d93]">
