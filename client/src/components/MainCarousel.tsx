@@ -58,9 +58,10 @@ const MainCarousel = () => {
           className={`carousel-slide flex items-center justify-center text-white ${index === currentSlide ? 'active' : ''}`}
           style={{
             background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${slide.backgroundImage}') no-repeat center center/cover`,
-            backgroundSize: 'cover',
-            imageRendering: 'pixelated'
+            willChange: 'transform',
+            backfaceVisibility: 'hidden'
           }}
+          loading="lazy"
         >
           <div className="text-center px-6 animate-fadeIn">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">{slide.title}</h2>
