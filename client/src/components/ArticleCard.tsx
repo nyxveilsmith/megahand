@@ -1,8 +1,10 @@
+
 import { Link } from "wouter";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Article } from "@shared/schema";
 import { format } from "date-fns";
+import React from "react";
 
 interface ArticleCardProps {
   article: Article;
@@ -36,8 +38,6 @@ const ArticleCard = React.memo(({ article }: ArticleCardProps) => {
       </CardFooter>
     </Card>
   );
-};
-
 });
 
 export default ArticleCard;
