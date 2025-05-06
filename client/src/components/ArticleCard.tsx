@@ -8,7 +8,7 @@ interface ArticleCardProps {
   article: Article;
 }
 
-const ArticleCard = ({ article }: ArticleCardProps) => {
+const ArticleCard = React.memo(({ article }: ArticleCardProps) => {
   const formattedDate = article.date 
     ? format(new Date(article.date), "MMMM dd, yyyy") 
     : "No date";
@@ -37,5 +37,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
     </Card>
   );
 };
+
+});
 
 export default ArticleCard;

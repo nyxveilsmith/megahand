@@ -14,7 +14,7 @@ interface CarouselSlide {
 const MainCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-  
+
   const slides: CarouselSlide[] = [
     {
       title: "Welcome to Megahand",
@@ -41,15 +41,15 @@ const MainCarousel = () => {
       buttonColor: "bg-amber-500 hover:bg-amber-600"
     }
   ];
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     }, 3000);
-    
+
     return () => clearInterval(interval);
   }, [slides.length]);
-  
+
   return (
     <section ref={carouselRef} className="carousel-container relative h-[60vh] min-h-[400px] bg-gray-900">
       {slides.map((slide, index) => (
@@ -57,7 +57,9 @@ const MainCarousel = () => {
           key={index}
           className={`carousel-slide flex items-center justify-center text-white ${index === currentSlide ? 'active' : ''}`}
           style={{
-            background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${slide.backgroundImage}') no-repeat center center/cover`
+            background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${slide.backgroundImage}') no-repeat center center/cover`,
+            backgroundSize: 'cover',
+            imageRendering: 'pixelated'
           }}
         >
           <div className="text-center px-6 animate-fadeIn">
@@ -71,7 +73,7 @@ const MainCarousel = () => {
           </div>
         </div>
       ))}
-      
+
       {/* Carousel indicators */}
       <div className="carousel-indicators">
         {slides.map((_, index) => (

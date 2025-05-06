@@ -113,6 +113,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/articles", async (_req, res) => {
     try {
       const articles = await storage.getAllArticles();
+      res.set('Cache-Control', 'public, max-age=300');
       res.json(articles);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch articles" });
