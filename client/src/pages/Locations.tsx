@@ -5,6 +5,22 @@ import LocationCard from "@/components/LocationCard";
 import { MapPin, Loader2 } from "lucide-react";
 import { Location } from "@shared/schema";
 
+// Function to return the correct Google Maps URL for each location
+const getMapUrl = (locationId: number): string | null => {
+  switch (locationId) {
+    case 1: // Megahand Sumqayit #1
+      return "https://maps.app.goo.gl/U9ZFGMH8PySBTy5M7";
+    case 2: // Megahand Bakı -Q.Qarayev-
+      return "https://maps.app.goo.gl/tRPAKnDzA8z9yC1S9";
+    case 3: // Megahand-Gəncə
+      return "https://maps.app.goo.gl/V9WJAhCdnEtJAFa77";
+    case 4: // Megahand Bakı-28May
+      return "https://maps.app.goo.gl/Bu1jb2zSbBSYZRcD8";
+    default:
+      return null;
+  }
+};
+
 const Locations = () => {
   const { locations, isLoading } = useLocations();
   
