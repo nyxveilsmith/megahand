@@ -7,6 +7,15 @@ export function useLocations() {
   const { toast } = useToast();
   const locationsQuery = useQuery<Location[]>({
     queryKey: ["/api/locations"],
+    queryFn: async () => {
+      const response = await fetch("/api/locations");
+      if (!response.ok) {
+        throw new Error("Failed to fetch locations");
+      }
+      const data = await response.json();
+      console.log("API response data:", data);
+      return data;
+    }
   });
   
   const createLocationMutation = useMutation({

@@ -22,7 +22,12 @@ const getMapUrl = (locationId: number): string | null => {
 };
 
 const Locations = () => {
-  const { locations, isLoading } = useLocations();
+  const { locations, isLoading, error } = useLocations();
+  
+  // Debug
+  console.log("Locations data:", locations);
+  console.log("Loading state:", isLoading);
+  console.log("Error:", error);
   
   // Initialize scroll animation observer
   useEffect(() => {
@@ -67,7 +72,7 @@ const Locations = () => {
             </div>
           ) : locations.length > 0 ? (
             locations.map((location) => (
-              <div key={location.id} className="slide-in">
+              <div key={location.id} className="slide-in visible">
                 <LocationCard 
                   location={{
                     ...location,

@@ -21,6 +21,7 @@ interface LocationCardProps {
 }
 
 const LocationCard = ({ location, isAdmin = false, onEdit, onDelete }: LocationCardProps) => {
+  console.log("LocationCard received location:", location);
   return (
     <Card className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-lg">
       <div className="relative h-[200px] overflow-hidden">
