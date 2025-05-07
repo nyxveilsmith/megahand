@@ -3,6 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "./context/AuthContext";
+import { useScrollToTop } from "./hooks/useScrollToTop";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -17,6 +18,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function Router() {
+  // Scroll to top when route changes
+  useScrollToTop();
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

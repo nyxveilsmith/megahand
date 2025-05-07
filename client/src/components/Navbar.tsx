@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
@@ -6,9 +6,20 @@ import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const { isAuthenticated } = useContext(AuthContext);
 
+  // Toggle mobile menu with debounce to prevent double-click issue
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prevState => !prevState);
+  }, []);
+
+  // Navigate to page and close menu
+  const handleNavigation = useCallback((path: string) => {
+    setLocation(path);
+    setMobileMenuOpen(false);
+  }, [setLocation]);
+  
   // Close mobile menu when changing routes
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -63,8 +74,8 @@ const Navbar = () => {
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-yellow-300 focus:outline-none"
-              aria-expanded="false"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen ? "true" : "false"}
+              onClick={toggleMobileMenu}
             >
               <span className="sr-only">Open main menu</span>
               {mobileMenuOpen ? (
@@ -84,29 +95,50 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white shadow-md`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
-          <Link href="/" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
+          <button 
+            onClick={() => handleNavigation("/")}
+            className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${location === '/' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}
+          >
             Ana Səhifə
-          </Link>
-          <Link href="/about" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/about' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
+          </button>
+          <button 
+            onClick={() => handleNavigation("/about")}
+            className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${location === '/about' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}
+          >
             Haqqımızda
-          </Link>
-          <Link href="/interesting" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/interesting' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
+          </button>
+          <button 
+            onClick={() => handleNavigation("/interesting")}
+            className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${location === '/interesting' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}
+          >
             Məqalələr
-          </Link>
-          <Link href="/locations" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/locations' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
+          </button>
+          <button 
+            onClick={() => handleNavigation("/locations")}
+            className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${location === '/locations' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}
+          >
             Filiallar
-          </Link>
-          <Link href="/contact" className={`block px-3 py-2 rounded-md text-base font-medium ${location === '/contact' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}>
+          </button>
+          <button 
+            onClick={() => handleNavigation("/contact")}
+            className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium ${location === '/contact' ? 'text-[#0057a6] font-bold' : 'text-gray-900 hover:text-[#0057a6] hover:bg-gray-100'}`}
+          >
             Əlaqə
-          </Link>
+          </button>
           {isAuthenticated ? (
-            <Link href="/admin/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#0057a6] hover:bg-[#004d93]">
+            <button 
+              onClick={() => handleNavigation("/admin/dashboard")}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-[#0057a6] hover:bg-[#004d93]"
+            >
               İdarə Paneli
-            </Link>
+            </button>
           ) : (
-            <Link href="/admin" className="block w-10 h-10 rounded-md text-white bg-[#0057a6] hover:bg-[#004d93] mx-3 my-2">
+            <button 
+              onClick={() => handleNavigation("/admin")}
+              className="block w-10 h-10 rounded-md text-white bg-[#0057a6] hover:bg-[#004d93] mx-3 my-2"
+            >
               {/* Empty square button */}
-            </Link>
+            </button>
           )}
         </div>
       </div>
