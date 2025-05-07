@@ -24,7 +24,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/megahand.az/?locale=az_AZ" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
                 <FaFacebookF />
               </a>
-              <a href="https://www.linkedin.com/showcase/megahand-sumqay%C4%B1t/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="https://www.tiktok.com/@megahandsumqayit" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
                 <FaTiktok />
               </a>
               <a href="https://www.instagram.com/megahandsumqayit/?hl=en" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">

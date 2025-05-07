@@ -4,10 +4,30 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import ArticleCard from "@/components/ArticleCard";
 import { useArticles } from "@/hooks/useArticles";
+import { useLocations } from "@/hooks/useLocations";
+import LocationCard from "@/components/LocationCard";
 import { DownloadButton } from "@/components/DownloadButton";
+import { Loader2 } from "lucide-react";
+
+// Function to return the correct Google Maps URL for each location
+const getMapUrl = (locationId: number): string | null => {
+  switch (locationId) {
+    case 1: // Megahand Sumqayit #1
+      return "https://maps.app.goo.gl/U9ZFGMH8PySBTy5M7";
+    case 2: // Megahand Bakı -Q.Qarayev-
+      return "https://maps.app.goo.gl/tRPAKnDzA8z9yC1S9";
+    case 3: // Megahand-Gəncə
+      return "https://maps.app.goo.gl/V9WJAhCdnEtJAFa77";
+    case 4: // Megahand Bakı-28May
+      return "https://maps.app.goo.gl/Bu1jb2zSbBSYZRcD8";
+    default:
+      return null;
+  }
+};
 
 const Home = () => {
   const { articles, isLoading } = useArticles();
+  const { locations, isLoading: locationsLoading } = useLocations();
   
   // Initialize scroll animation observer
   useEffect(() => {
@@ -29,6 +49,9 @@ const Home = () => {
   
   // Filter to show only 3 latest articles for the homepage
   const latestArticles = articles.slice(0, 3);
+  
+  // Filter to show only 3 first locations for the homepage
+  const previewLocations = locations.slice(0, 3);
   
   return (
     <>
@@ -120,9 +143,41 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="my-12">
+          {locationsLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="bg-white rounded-lg shadow-lg p-6 animate-pulse">
+                  <div className="h-48 bg-gray-200 rounded-md mb-4"></div>
+                  <div className="h-6 bg-gray-200 rounded mb-2 w-3/4"></div>
+                  <div className="h-4 bg-gray-200 rounded mb-4 w-1/2"></div>
+                  <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+                  <div className="h-4 bg-gray-200 rounded mb-2 w-5/6"></div>
+                  <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {previewLocations.map((location) => (
+                <div key={location.id} className="slide-in visible">
+                  <LocationCard 
+                    location={{
+                      ...location,
+                      mapUrl: getMapUrl(location.id),
+                      phone: location.phoneNumber || null,
+                      instagram: location.instagramAccount || null,
+                      whatsapp: location.whatsappNumber || null,
+                      zipCode: location.zipCode
+                    }} 
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <div className="text-center mt-12">
             <Link href="/locations">
-              <Button className="px-6 py-3 bg-primary text-white rounded-lg font-medium btn-hover mx-auto block">
+              <Button className="px-6 py-3 bg-primary text-white rounded-lg font-medium btn-hover">
                 Bütün Mağazalar
               </Button>
             </Link>
