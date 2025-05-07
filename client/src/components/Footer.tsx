@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { 
   FaFacebookF, 
-  FaTwitter, 
+  FaTiktok,
   FaInstagram, 
   FaLinkedinIn,
   FaMapMarkerAlt,
@@ -21,16 +21,16 @@ const Footer = () => {
             </div>
             <p className="text-gray-400 mb-6">Your trusted source for quality European clothing for the whole family.</p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="https://www.facebook.com/megahand.az/?locale=az_AZ" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
                 <FaFacebookF />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <FaTwitter />
+              <a href="https://www.linkedin.com/showcase/megahand-sumqay%C4%B1t/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <FaTiktok />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="https://www.instagram.com/megahandsumqayit/?hl=en" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
                 <FaInstagram />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="https://www.linkedin.com/showcase/megahand-sumqay%C4%B1t/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
                 <FaLinkedinIn />
               </a>
             </div>
@@ -74,7 +74,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <FaMapMarkerAlt className="mt-1 mr-3 text-gray-400" />
-                <span className="text-gray-400">123 Business Avenue, Baku, Azerbaijan</span>
+                <span className="text-gray-400">Badalbayli Street, Sumqayit 5001, Azerbaijan</span>
               </li>
               <li className="flex items-start">
                 <FaEnvelope className="mt-1 mr-3 text-gray-400" />
@@ -82,7 +82,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <FaPhone className="mt-1 mr-3 text-gray-400" />
-                <span className="text-gray-400">+994 12 345 6789</span>
+                <span className="text-gray-400">+99450 277 07 20</span>
               </li>
             </ul>
           </div>

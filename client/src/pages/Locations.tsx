@@ -55,11 +55,7 @@ const Locations = () => {
                 <LocationCard 
                   location={{
                     ...location,
-                    mapUrl: (
-                      location.latitude && location.longitude 
-                        ? `https://maps.google.com/?q=${location.latitude},${location.longitude}` 
-                        : null
-                    ),
+                    mapUrl: getMapUrl(location.id),
                     phone: location.phoneNumber || null,
                     instagram: location.instagramAccount || null,
                     whatsapp: location.whatsappNumber || null

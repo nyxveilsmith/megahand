@@ -199,15 +199,57 @@ export const storage = new MemStorage();
 
 // Add default locations
 storage.createLocation({
-  name: "MegaHand Moscow Office",
-  address: "Bolshaya Dmitrovka, 32/1, Moscow, Russia",
-  zipCode: "127051",
-  description: "Our main office in the heart of Moscow. Visit us for consultations and services.",
-  phoneNumber: "+7 495 123-45-67",
-  instagramAccount: "@megahand_moscow",
-  whatsappNumber: "+7 495 123-45-67",
-  imageUrl: "https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  latitude: "55.7646",
-  longitude: "37.6117",
+  name: "Megahand Sumqayit #1",
+  address: "Badalbayli Street, Sumqayit 5001",
+  zipCode: "5001",
+  description: "Our main office in Sumqayit. Visit us for the latest European clothing collections.",
+  phoneNumber: "+99450 277 07 20",
+  instagramAccount: "@megahandsumqayit",
+  whatsappNumber: "+99450 277 07 20",
+  imageUrl: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  latitude: "40.5889",
+  longitude: "49.6572",
+  status: "active"
+});
+
+storage.createLocation({
+  name: "Megahand Bakı -Q.Qarayev-",
+  address: "CW8R+255, Baku",
+  zipCode: null,
+  description: "Our Baku branch located near Qara Qarayev metro station.",
+  phoneNumber: "+99450 490 35 60",
+  instagramAccount: "@megahandsumqayit",
+  whatsappNumber: "+99450 490 35 60",
+  imageUrl: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  latitude: "40.4093",
+  longitude: "49.9387",
+  status: "active"
+});
+
+storage.createLocation({
+  name: "Megahand-Gəncə",
+  address: "M9H9+X33, Ganja",
+  zipCode: null,
+  description: "Our Ganja location offering quality European fashion.",
+  phoneNumber: "+99450 453 20 45",
+  instagramAccount: "@megahandsumqayit",
+  whatsappNumber: "+99450 453 20 45",
+  imageUrl: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  latitude: "40.6830",
+  longitude: "46.3606",
+  status: "active"
+});
+
+storage.createLocation({
+  name: "Megahand Bakı-28May",
+  address: "140 Shamil Azizbayov, Baku",
+  zipCode: null,
+  description: "Our Baku branch located near 28 May metro station.",
+  phoneNumber: "+99450 277 87 26",
+  instagramAccount: "@megahandsumqayit",
+  whatsappNumber: "+99450 277 87 26",
+  imageUrl: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  latitude: "40.3776",
+  longitude: "49.8501",
   status: "active"
 });

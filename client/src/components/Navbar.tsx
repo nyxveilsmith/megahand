@@ -51,8 +51,8 @@ const Navbar = () => {
               </Link>
             ) : (
               <Link href="/admin">
-                <Button size="sm" variant="default" className="ml-4 btn-hover">
-                  Admin
+                <Button size="sm" variant="default" className="ml-4 w-10 h-10 p-0 flex items-center justify-center">
+                  {/* Square button with no text */}
                 </Button>
               </Link>
             )}
@@ -104,8 +104,8 @@ const Navbar = () => {
               İdarə Paneli
             </Link>
           ) : (
-            <Link href="/admin" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#0057a6] hover:bg-[#004d93]">
-              Admin
+            <Link href="/admin" className="block w-10 h-10 rounded-md text-white bg-[#0057a6] hover:bg-[#004d93] mx-3 my-2">
+              {/* Empty square button */}
             </Link>
           )}
         </div>
