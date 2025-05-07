@@ -19,7 +19,7 @@ import {
   FaEnvelope,
   FaPhone,
   FaFacebookF,
-  FaTwitter,
+  FaTiktok,
   FaInstagram,
   FaLinkedinIn
 } from "react-icons/fa";
@@ -223,23 +223,23 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Zəng edin</h3>
-                    <p className="text-gray-600">+994 12 345 6789</p>
+                    <p className="text-gray-600">+99450 277 07 20</p>
                   </div>
                 </div>
 
                 <div className="mt-8">
                   <h3 className="font-medium text-gray-900 mb-4">Bizi izləyin</h3>
                   <div className="flex space-x-4">
-                    <a href="#" className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors duration-200">
+                    <a href="https://www.facebook.com/megahand.az/?locale=az_AZ" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors duration-200">
                       <FaFacebookF />
                     </a>
-                    <a href="#" className="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition-colors duration-200">
-                      <FaTwitter />
+                    <a href="https://www.tiktok.com/@megahandsumqayit" target="_blank" rel="noopener noreferrer" className="bg-black text-white p-3 rounded-full hover:bg-gray-800 transition-colors duration-200">
+                      <FaTiktok />
                     </a>
-                    <a href="#" className="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition-colors duration-200">
+                    <a href="https://www.instagram.com/megahandsumqayit/?hl=en" target="_blank" rel="noopener noreferrer" className="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition-colors duration-200">
                       <FaInstagram />
                     </a>
-                    <a href="#" className="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition-colors duration-200">
+                    <a href="https://www.linkedin.com/showcase/megahand-sumqay%C4%B1t/" target="_blank" rel="noopener noreferrer" className="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition-colors duration-200">
                       <FaLinkedinIn />
                     </a>
                   </div>
