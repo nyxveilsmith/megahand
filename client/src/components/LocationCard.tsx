@@ -24,75 +24,75 @@ const LocationCard = ({ location, isAdmin = false, onEdit, onDelete }: LocationC
   console.log("LocationCard received location:", location);
   return (
     <Card className="overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-lg">
-      <div className="relative h-[200px] overflow-hidden">
+      <div className="relative h-[180px] sm:h-[200px] overflow-hidden">
         <img 
           src={location.imageUrl || "https://via.placeholder.com/400x200?text=Megahand+Location"} 
           alt={location.name}
+          loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
       </div>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-xl text-primary">{location.name}</CardTitle>
-        <CardDescription className="flex items-center gap-1">
-          <MapPin size={16} className="text-muted-foreground" />
-          <span>{location.address}{location.zipCode ? `, ${location.zipCode}` : ''}</span>
+      <CardHeader className="pb-2 sm:pb-3 px-3 sm:px-6 pt-3 sm:pt-6">
+        <CardTitle className="text-lg sm:text-xl font-bold text-primary">{location.name}</CardTitle>
+        <CardDescription className="flex items-center gap-1 mt-1">
+          <MapPin size={16} className="text-muted-foreground flex-shrink-0" />
+          <span className="text-sm sm:text-base">{location.address}{location.zipCode ? `, ${location.zipCode}` : ''}</span>
         </CardDescription>
       </CardHeader>
-      <CardContent className="pb-2 flex-grow">
-        <p className="text-sm text-slate-600 mb-3">{location.description}</p>
+      <CardContent className="px-3 sm:px-6 pb-1 sm:pb-2 flex-grow">
+        <p className="text-sm sm:text-base text-slate-600 mb-3">{location.description}</p>
         
-        <div className="space-y-2">
+        <div className="space-y-3 mt-4">
           {location.phone && (
-            <div className="flex items-center gap-2">
-              <Phone size={16} className="text-primary" />
-              <a href={`tel:${location.phone}`} className="text-sm hover:underline">{location.phone}</a>
-            </div>
+            <a 
+              href={`tel:${location.phone}`} 
+              className="flex items-center gap-2 p-2 rounded-md hover:bg-slate-100 transition-colors"
+            >
+              <Phone size={20} className="text-primary" />
+              <span className="text-sm sm:text-base hover:underline">{location.phone}</span>
+            </a>
           )}
           
           {location.instagram && (
-            <div className="flex items-center gap-2">
-              <Instagram size={16} className="text-primary" />
-              <a 
-                href={`https://instagram.com/${location.instagram.replace('@', '')}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm hover:underline"
-              >
-                {location.instagram}
-              </a>
-            </div>
+            <a 
+              href={`https://instagram.com/${location.instagram.replace('@', '')}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 p-2 rounded-md hover:bg-slate-100 transition-colors"
+            >
+              <Instagram size={20} className="text-primary" />
+              <span className="text-sm sm:text-base hover:underline">{location.instagram}</span>
+            </a>
           )}
           
           {location.whatsapp && (
-            <div className="flex items-center gap-2">
-              <MessageCircle size={16} className="text-primary" />
-              <a 
-                href={`https://wa.me/${location.whatsapp.replace(/\D/g, '')}`}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm hover:underline"
-              >
-                WhatsApp
-              </a>
-            </div>
+            <a 
+              href={`https://wa.me/${location.whatsapp.replace(/\D/g, '')}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 p-2 rounded-md hover:bg-slate-100 transition-colors"
+            >
+              <MessageCircle size={20} className="text-primary" />
+              <span className="text-sm sm:text-base hover:underline">WhatsApp</span>
+            </a>
           )}
         </div>
       </CardContent>
       
       {isAdmin && (
-        <CardFooter className="pt-2 flex gap-2">
+        <CardFooter className="pt-2 flex gap-2 px-3 sm:px-6 pb-4">
           <Button 
             variant="outline" 
-            size="sm"
-            className="flex-1"
+            size="lg"
+            className="flex-1 text-base"
             onClick={() => onEdit && onEdit(location)}
           >
             Edit
           </Button>
           <Button 
             variant="destructive" 
-            size="sm"
-            className="flex-1"
+            size="lg"
+            className="flex-1 text-base"
             onClick={() => onDelete && onDelete(location.id)}
           >
             Delete
@@ -101,10 +101,11 @@ const LocationCard = ({ location, isAdmin = false, onEdit, onDelete }: LocationC
       )}
       
       {!isAdmin && location.mapUrl && (
-        <CardFooter className="pt-2">
+        <CardFooter className="pt-2 px-3 sm:px-6 pb-4">
           <Button 
             variant="default" 
-            className="w-full"
+            size="lg"
+            className="w-full text-base h-12"
             asChild
           >
             <a 
@@ -113,8 +114,8 @@ const LocationCard = ({ location, isAdmin = false, onEdit, onDelete }: LocationC
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2"
             >
-              <MapPin size={16} />
-              View on Map
+              <MapPin size={18} />
+              Xəritədə Bax
             </a>
           </Button>
         </CardFooter>
