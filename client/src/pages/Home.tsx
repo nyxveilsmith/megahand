@@ -67,14 +67,16 @@ const Home = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
             <div className="slide-in">
-              <img 
-                src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                alt="MegaHand.az Haqqında" 
-                loading="lazy"
-                width="800"
-                height="600"
-                className="rounded-lg shadow-lg w-full h-auto"
-              />
+              <div className="aspect-video rounded-lg shadow-lg overflow-hidden">
+                <iframe 
+                  src="https://www.youtube.com/embed/5CA5_iDZhCw" 
+                  title="Megahand Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  className="w-full h-full"
+                ></iframe>
+              </div>
             </div>
             
             <div className="slide-in">
