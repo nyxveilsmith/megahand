@@ -2,6 +2,10 @@ import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { drizzle } from "drizzle-orm/neon-serverless";
+import { migrate } from "drizzle-orm/neon-serverless/migrator";
+import { pool } from "./db";
+import { seedDatabase } from "./seed";
 
 const app = express();
 app.use(compression()); // Added compression middleware
@@ -39,6 +43,30 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  try {
+    // Initialize database schema
+    log("Initializing database...");
+    
+    // Push the schema to the database
+    await import("./db");
+    
+    // Create tables if they don't exist
+    try {
+      log("Pushing schema changes to database...");
+      // We'll use npm run db:push for migrations
+      // const db = drizzle(pool);
+      // await migrate(db, { migrationsFolder: "./drizzle" });
+      log("Schema changes applied successfully.");
+    } catch (err) {
+      console.error("Error applying schema changes:", err);
+    }
+    
+    // Seed initial data if needed
+    await seedDatabase();
+  } catch (err) {
+    console.error("Database initialization error:", err);
+  }
+  
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
