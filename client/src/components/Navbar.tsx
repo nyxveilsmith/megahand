@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
+            <Link href={isAuthenticated ? "/admin/dashboard" : "/admin"} className="flex-shrink-0 flex items-center">
               <div className="flex items-center">
                 <img src="/src/assets/Logo.jpg" alt="Megahand Logo" className="h-10" />
               </div>
@@ -53,20 +53,6 @@ const Navbar = () => {
             <Link href="/contact" className={`px-3 py-2 rounded-md text-sm font-medium ${location === '/contact' ? 'text-yellow-300 font-bold' : 'text-white hover:text-yellow-300'} transition-colors duration-200`}>
               Əlaqə
             </Link>
-
-            {isAuthenticated ? (
-              <Link href="/admin/dashboard">
-                <Button size="sm" variant="default" className="ml-4 btn-hover">
-                  İdarə Paneli
-                </Button>
-              </Link>
-            ) : (
-              <Link href="/admin">
-                <Button size="sm" variant="default" className="ml-4 w-10 h-10 p-0 flex items-center justify-center">
-                  {/* Square button with no text */}
-                </Button>
-              </Link>
-            )}
           </div>
 
           {/* Mobile menu button */}
@@ -125,21 +111,6 @@ const Navbar = () => {
           >
             Əlaqə
           </button>
-          {isAuthenticated ? (
-            <button 
-              onClick={() => handleNavigation("/admin/dashboard")}
-              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-[#0057a6] hover:bg-[#004d93]"
-            >
-              İdarə Paneli
-            </button>
-          ) : (
-            <button 
-              onClick={() => handleNavigation("/admin")}
-              className="block w-10 h-10 rounded-md text-white bg-[#0057a6] hover:bg-[#004d93] mx-3 my-2"
-            >
-              {/* Empty square button */}
-            </button>
-          )}
         </div>
       </div>
     </nav>

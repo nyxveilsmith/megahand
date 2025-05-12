@@ -17,11 +17,16 @@ const ArticleCard = React.memo(({ article }: ArticleCardProps) => {
 
   return (
     <Card className="card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl">
-      <div className="h-48 overflow-hidden">
+      <div className="h-48 overflow-hidden bg-gray-100">
         <img 
           src={article.imageUrl || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"} 
           alt={article.title} 
           className="w-full h-full object-cover"
+          loading="lazy"
+          onError={(e) => {
+            // If image fails to load, replace with a fallback
+            e.currentTarget.src = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+          }}
         />
       </div>
       <CardContent className="p-6">
@@ -32,7 +37,7 @@ const ArticleCard = React.memo(({ article }: ArticleCardProps) => {
         <span className="text-sm text-gray-500">{formattedDate}</span>
         <Link href={`/interesting/${article.id}`}>
           <Button variant="link" className="text-primary font-medium hover:text-blue-700 transition-colors duration-200">
-            Read More
+            Ətraflı
           </Button>
         </Link>
       </CardFooter>
