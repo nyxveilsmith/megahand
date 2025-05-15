@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "./context/AuthContext";
 import { useScrollToTop } from "./hooks/useScrollToTop";
+import { useState, useEffect } from "react";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -16,10 +17,27 @@ import Admin from "@/pages/Admin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import DayProgressCard from "./components/DayProgressCard";
 
 function Router() {
   // Scroll to top when route changes
   useScrollToTop();
+  
+  // Show the progress card popup on first load
+  const [showProgressCard, setShowProgressCard] = useState(true);
+  
+  // Check if this is the first visit of the day
+  useEffect(() => {
+    const lastVisitDate = localStorage.getItem('lastVisitDate');
+    const today = new Date().toLocaleDateString();
+    
+    if (lastVisitDate !== today) {
+      setShowProgressCard(true);
+      localStorage.setItem('lastVisitDate', today);
+    } else {
+      setShowProgressCard(false);
+    }
+  }, []);
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -36,6 +54,9 @@ function Router() {
           <Route path="/admin/dashboard" component={AdminDashboard} />
           <Route component={NotFound} />
         </Switch>
+        
+        {/* Day Progress Card popup */}
+        {showProgressCard && <DayProgressCard />}
       </main>
       <Footer />
     </div>
