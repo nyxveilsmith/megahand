@@ -172,10 +172,26 @@ const DiscountCard = () => {
         </h3>
         
         <div className="flex justify-center mb-4 mt-6">
-          <div className="relative w-32 h-32 flex flex-col items-center justify-center bg-yellow-50 rounded-full border-4 border-dashed border-yellow-500">
-            <Tag className="text-red-500 mb-1" size={28} />
-            <div className="text-4xl font-bold text-red-600">{discount}%</div>
-            <div className="text-xs text-red-500 font-semibold">ENDİRİM</div>
+          <div className="relative w-36 h-36 flex flex-col items-center justify-center bg-yellow-50 rounded-full border-4 border-dashed border-yellow-500 overflow-hidden">
+            {/* Sparkling effect elements */}
+            <div className="absolute inset-0">
+              <span className="absolute w-3 h-3 bg-yellow-300 opacity-70 rounded-full top-5 left-3 animate-ping duration-1500 delay-200"></span>
+              <span className="absolute w-2 h-2 bg-red-300 opacity-70 rounded-full top-20 right-4 animate-ping duration-2000 delay-1000"></span>
+              <span className="absolute w-2 h-2 bg-blue-300 opacity-70 rounded-full bottom-3 left-10 animate-ping duration-1800 delay-500"></span>
+              <span className="absolute w-1.5 h-1.5 bg-green-300 opacity-70 rounded-full bottom-10 right-8 animate-ping duration-1700 delay-800"></span>
+              
+              <span className="absolute top-0 left-8 text-yellow-400 animate-bounce delay-300">★</span>
+              <span className="absolute bottom-5 right-5 text-red-400 animate-bounce delay-700">✦</span>
+              <span className="absolute top-12 right-3 text-blue-400 animate-bounce delay-500">✧</span>
+              <span className="absolute bottom-3 left-3 text-green-400 animate-bounce delay-100">⋆</span>
+            </div>
+            
+            {/* Shimmering border effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-200 to-transparent opacity-30 animate-shimmer"></div>
+            
+            <Tag className="text-red-500 mb-1 relative z-10" size={28} />
+            <div className="text-5xl font-bold text-red-600 relative z-10">{discount}%</div>
+            <div className="text-sm text-red-500 font-semibold relative z-10">ENDİRİM</div>
           </div>
         </div>
         
@@ -192,9 +208,15 @@ const DiscountCard = () => {
         
         <button
           onClick={() => setVisible(false)}
-          className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition-colors btn-hover"
+          className="relative w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition-colors btn-hover overflow-hidden group"
         >
-          Mağazalarımıza gəlin
+          {/* Sparkling effects */}
+          <span className="absolute w-2 h-2 bg-yellow-200 rounded-full top-0 left-[20%] animate-ping opacity-75 duration-700 delay-300"></span>
+          <span className="absolute w-1.5 h-1.5 bg-white rounded-full bottom-1 right-[15%] animate-ping opacity-75 duration-1000 delay-100"></span>
+          <span className="absolute w-1 h-1 bg-yellow-300 rounded-full top-2 right-[30%] animate-ping opacity-75 duration-700 delay-500"></span>
+          <span className="absolute w-1 h-1 bg-white rounded-full bottom-2 left-[25%] animate-ping opacity-75 duration-1000 delay-700"></span>
+          
+          <span className="relative z-10 inline-block font-bold text-lg">Davam et</span>
         </button>
       </div>
     </motion.div>
