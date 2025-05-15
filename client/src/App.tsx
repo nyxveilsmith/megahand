@@ -27,19 +27,19 @@ function Router() {
   const [showDiscountCard, setShowDiscountCard] = useState(false);
   const [location] = useLocation();
   
-  // Check if this is the first visit in the session and not on admin pages
+  // Show the discount popup on every page load except admin pages
   useEffect(() => {
     const isAdminPage = location.includes('/admin');
-    const hasSeenDiscount = sessionStorage.getItem('hasSeenDiscount');
     
-    if (!isAdminPage && !hasSeenDiscount) {
+    if (!isAdminPage) {
       // Wait a bit before showing the discount popup for better user experience
       const timer = setTimeout(() => {
         setShowDiscountCard(true);
-        sessionStorage.setItem('hasSeenDiscount', 'true');
       }, 1500);
       
       return () => clearTimeout(timer);
+    } else {
+      setShowDiscountCard(false);
     }
   }, [location]);
   

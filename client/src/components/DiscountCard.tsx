@@ -182,7 +182,7 @@ const DiscountCard = () => {
         
         <div className="bg-blue-50 p-3 rounded-lg mb-4">
           <div className="text-center text-sm text-blue-800 font-medium">
-            Bütün Megahand mağazalarında bugün {discount}% endirim! Təklifdən yararlanmaq üçün "MH{discount}" kodunu istifadə edin.
+            Bütün Megahand mağazalarında bugün {discount}% endirim!
           </div>
         </div>
         
