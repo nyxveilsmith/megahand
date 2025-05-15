@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href={isAuthenticated ? "/admin/dashboard" : "/admin"} className="flex-shrink-0 flex items-center">
+            <Link href="/" className="flex-shrink-0 flex items-center">
               <div className="flex items-center">
                 <img src="/src/assets/Logo.jpg" alt="Megahand Logo" className="h-10" />
               </div>

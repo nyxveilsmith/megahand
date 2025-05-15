@@ -1,180 +1,193 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import confetti from "canvas-confetti";
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Progress } from '@/components/ui/progress';
+import confetti from 'canvas-confetti';
+import { X } from 'lucide-react';
 
-// Animation helper function for creating confetti effect
-const runConfettiAnimation = () => {
-  const duration = 3000;
+// Calculate percentage of day passed
+const calculateDayProgress = (): number => {
+  const now = new Date();
+  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+  const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+  
+  const totalDayMs = endOfDay.getTime() - startOfDay.getTime();
+  const elapsedMs = now.getTime() - startOfDay.getTime();
+  
+  return Math.floor((elapsedMs / totalDayMs) * 100);
+};
+
+// Confetti animation function
+const triggerConfetti = () => {
+  const duration = 3 * 1000;
   const animationEnd = Date.now() + duration;
-  const colors = ["#0057a6", "#ffd700", "#ff69b4", "#00ff00", "#ff4500"];
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
 
-  // Create multiple confetti bursts
-  const createConfettiBurst = () => {
-    const timeLeft = animationEnd - Date.now();
-    const ticks = Math.max(200, 500 * (timeLeft / duration));
-    
-    confetti({
-      particleCount: 2,
-      startVelocity: 30,
-      spread: 360,
-      ticks: ticks,
-      zIndex: 1000,
-      colors: colors,
-      origin: {
-        x: Math.random(),
-        y: Math.random() - 0.2
-      }
-    });
-    
-    if (timeLeft > 0) {
-      requestAnimationFrame(createConfettiBurst);
-    }
+  const randomInRange = (min: number, max: number) => {
+    return Math.random() * (max - min) + min;
   };
 
-  createConfettiBurst();
+  const interval: any = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    
+    // Random colors
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      colors: ['#0057a6', '#ffd700', '#ff4040', '#00cc66'],
+    });
+    
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      colors: ['#0057a6', '#ffd700', '#ff4040', '#00cc66'],
+    });
+  }, 250);
 };
 
-// Progress circle component
-const ProgressCircle = ({ percentage }: { percentage: number }) => {
-  const circumference = 2 * Math.PI * 45; // Radius of 45 units
-  const strokeDashoffset = circumference * (1 - percentage / 100);
-
-  return (
-    <div className="relative flex items-center justify-center w-48 h-48">
-      {/* Background circle */}
-      <svg className="absolute w-full h-full" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="45"
-          fill="none"
-          stroke="#e6e6e6"
-          strokeWidth="5"
-        />
-      </svg>
-      
-      {/* Progress circle */}
-      <svg className="absolute w-full h-full -rotate-90" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="45"
-          fill="none"
-          stroke="#0057a6"
-          strokeWidth="5"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          className="transition-all duration-1000 ease-out"
-        />
-      </svg>
-      
-      {/* Percentage text */}
-      <div className="text-4xl font-bold text-gray-800">
-        {Math.round(percentage)}%
-      </div>
-      
-      {/* Decorative elements */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-44 h-44 rounded-full border-2 border-dashed border-blue-300 animate-spin-slow opacity-30"></div>
-      </div>
-    </div>
-  );
-};
-
-// Main component
 const DayProgressCard = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [showAnimation, setShowAnimation] = useState(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [visible, setVisible] = useState<boolean>(true);
+  const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState<boolean>(false);
   
   useEffect(() => {
-    // Calculate the percentage of the day that has passed
-    const calculateDayPercentage = () => {
-      const now = new Date();
-      const startOfDay = new Date(now);
-      startOfDay.setHours(0, 0, 0, 0);
-      
-      const endOfDay = new Date(now);
-      endOfDay.setHours(23, 59, 59, 999);
-      
-      const totalDayMs = endOfDay.getTime() - startOfDay.getTime();
-      const elapsedMs = now.getTime() - startOfDay.getTime();
-      
-      return (elapsedMs / totalDayMs) * 100;
-    };
+    // Calculate day progress
+    const dayProgress = calculateDayProgress();
     
-    // Animate the progress from 0 to the actual value
-    const dayPercentage = calculateDayPercentage();
-    let currentProgress = 0;
-    
-    const progressInterval = setInterval(() => {
-      currentProgress += 1;
-      setProgress(currentProgress);
+    // Animate progress value from 0 to actual value
+    let start = 0;
+    const step = 1;
+    const interval = setInterval(() => {
+      start += step;
+      setProgress(start);
       
-      // Start confetti when progress is around 25%, 50%, 75%
-      if (currentProgress === 25 || currentProgress === 50 || currentProgress === 75) {
-        setShowAnimation(true);
-        runConfettiAnimation();
+      // Check if we've hit confetti trigger thresholds
+      if (dayProgress >= 25 && start >= 25 && !hasTriggeredConfetti) {
+        triggerConfetti();
+        setHasTriggeredConfetti(true);
       }
       
-      // Stop when we reach the actual percentage
-      if (currentProgress >= dayPercentage) {
-        setProgress(dayPercentage);
-        clearInterval(progressInterval);
-        
-        // Final confetti burst
-        setShowAnimation(true);
-        runConfettiAnimation();
+      if (start >= dayProgress) {
+        clearInterval(interval);
       }
-    }, 30);
+    }, 20);
     
-    return () => clearInterval(progressInterval);
-  }, []);
+    return () => clearInterval(interval);
+  }, [hasTriggeredConfetti]);
   
-  if (!isOpen) return null;
-  
-  // Get current date and format it
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString('az-AZ', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  if (!visible) {
+    return null;
+  }
   
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="relative w-11/12 max-w-md p-6 mx-auto bg-white rounded-lg shadow-xl animate-fade-in">
-        {/* Animation elements */}
-        {showAnimation && (
-          <>
-            <div className="absolute -top-4 -left-4 w-12 h-12 bg-yellow-300 rounded-full animate-ping-slow opacity-70"></div>
-            <div className="absolute -bottom-2 -right-4 w-8 h-8 bg-blue-500 rounded-full animate-ping-slow opacity-70 animation-delay-300"></div>
-            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full animate-ping-slow opacity-70 animation-delay-700"></div>
-            <div className="absolute -bottom-4 -left-2 w-10 h-10 bg-pink-400 rounded-full animate-ping-slow opacity-70 animation-delay-500"></div>
-          </>
-        )}
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed bottom-10 right-10 z-50 bg-white rounded-lg shadow-2xl p-6 w-80"
+    >
+      <button 
+        onClick={() => setVisible(false)} 
+        className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+      >
+        <X size={18} />
+      </button>
+      
+      <div className="relative">
+        <motion.div
+          className="absolute -top-10 -left-8 w-8 h-8 bg-blue-400 rounded-full"
+          animate={{
+            y: [0, -10, 0],
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
         
-        <div className="text-center">
-          <h2 className="mb-2 text-2xl font-bold text-gray-800">Günün İrəliləyişi</h2>
-          <p className="mb-4 text-gray-600">{formattedDate}</p>
-          
-          <div className="flex flex-col items-center justify-center my-6">
-            <ProgressCircle percentage={progress} />
-            <p className="mt-4 mb-2 text-gray-700">
-              Bugün {Math.round(progress)}% tamamlanıb
-            </p>
+        <motion.div
+          className="absolute -top-4 -right-6 w-6 h-6 bg-yellow-400 rounded-full animation-delay-300"
+          animate={{
+            y: [0, -8, 0],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.3
+          }}
+        />
+        
+        <motion.div
+          className="absolute -bottom-8 left-6 w-10 h-10 bg-green-400 rounded-full animation-delay-700"
+          animate={{
+            y: [0, -12, 0],
+            opacity: [0.6, 1, 0.6],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.7
+          }}
+        />
+        
+        <motion.div
+          className="absolute -bottom-2 right-4 w-5 h-5 bg-red-400 rounded-full animation-delay-500"
+          animate={{
+            y: [0, -6, 0],
+            opacity: [0.4, 0.9, 0.4],
+          }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5
+          }}
+        />
+      </div>
+      
+      <h3 className="text-lg font-bold text-center mb-2 text-gray-800">Günün İrəliləyişi</h3>
+      
+      <div className="flex justify-center mb-4">
+        <div className="relative w-32 h-32 flex items-center justify-center rounded-full border-8 border-gray-100">
+          <div className="absolute inset-0 rounded-full overflow-hidden">
+            <div 
+              className="absolute inset-0 bg-blue-500 bg-opacity-20 origin-bottom"
+              style={{ 
+                transform: `rotate(${progress * 3.6}deg)`, 
+                transition: 'transform 0.3s ease',
+                clipPath: 'polygon(50% 50%, 100% 50%, 100% 0, 0 0, 0 50%)'
+              }}
+            />
           </div>
-          
-          <Button 
-            onClick={() => setIsOpen(false)}
-            className="px-6 py-3 mt-4 font-medium text-white bg-primary hover:bg-blue-700 transition-colors"
-          >
-            Davam Edin
-          </Button>
+          <div className="text-3xl font-bold text-blue-600">{progress}%</div>
         </div>
       </div>
-    </div>
+      
+      <Progress className="h-2 mb-4" value={progress} />
+      
+      <div className="text-center text-sm text-gray-600 mb-4">
+        Gün bu qədər keçib! Günün qalanında uğurlar!
+      </div>
+      
+      <button
+        onClick={() => setVisible(false)}
+        className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors btn-hover"
+      >
+        Davam edin
+      </button>
+    </motion.div>
   );
 };
 
