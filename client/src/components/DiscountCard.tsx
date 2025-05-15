@@ -194,7 +194,7 @@ const DiscountCard = () => {
           onClick={() => setVisible(false)}
           className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition-colors btn-hover"
         >
-          İndi alış-veriş et
+          Mağazalarımıza gəlin
         </button>
       </div>
     </motion.div>
