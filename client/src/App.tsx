@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -17,27 +17,31 @@ import Admin from "@/pages/Admin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import DayProgressCard from "./components/DayProgressCard";
+import DiscountCard from "./components/DiscountCard";
 
 function Router() {
   // Scroll to top when route changes
   useScrollToTop();
   
-  // Show the progress card popup on first load
-  const [showProgressCard, setShowProgressCard] = useState(true);
+  // Show the discount popup on pages except admin
+  const [showDiscountCard, setShowDiscountCard] = useState(false);
+  const [location] = useLocation();
   
-  // Check if this is the first visit of the day
+  // Check if this is the first visit in the session and not on admin pages
   useEffect(() => {
-    const lastVisitDate = localStorage.getItem('lastVisitDate');
-    const today = new Date().toLocaleDateString();
+    const isAdminPage = location.includes('/admin');
+    const hasSeenDiscount = sessionStorage.getItem('hasSeenDiscount');
     
-    if (lastVisitDate !== today) {
-      setShowProgressCard(true);
-      localStorage.setItem('lastVisitDate', today);
-    } else {
-      setShowProgressCard(false);
+    if (!isAdminPage && !hasSeenDiscount) {
+      // Wait a bit before showing the discount popup for better user experience
+      const timer = setTimeout(() => {
+        setShowDiscountCard(true);
+        sessionStorage.setItem('hasSeenDiscount', 'true');
+      }, 1500);
+      
+      return () => clearTimeout(timer);
     }
-  }, []);
+  }, [location]);
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -55,8 +59,8 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
         
-        {/* Day Progress Card popup */}
-        {showProgressCard && <DayProgressCard />}
+        {/* Discount Card popup - shows on all pages except admin */}
+        {showDiscountCard && <DiscountCard />}
       </main>
       <Footer />
     </div>

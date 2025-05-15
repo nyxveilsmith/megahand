@@ -47,7 +47,7 @@ const triggerConfetti = () => {
   }, 250);
 };
 
-const DayProgressCard = () => {
+const DiscountCard = () => {
   const [discount, setDiscount] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(true);
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState<boolean>(false);
@@ -202,4 +202,4 @@ const DayProgressCard = () => {
   );
 };
 
-export default DayProgressCard;
+export default DiscountCard;
