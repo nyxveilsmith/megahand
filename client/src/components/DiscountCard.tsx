@@ -163,7 +163,6 @@ const DiscountCard = () => {
       <div className="absolute -top-5 -left-5 w-20 h-20 bg-red-500 rounded-full flex items-center justify-center transform rotate-[-15deg] shadow-lg">
         <div className="text-white font-bold text-center leading-tight">
           <div className="text-xs">ENDİRİM</div>
-          <div className="text-xl">{discount}%</div>
         </div>
       </div>
       
@@ -182,7 +181,7 @@ const DiscountCard = () => {
         
         <div className="bg-blue-50 p-3 rounded-lg mb-4">
           <div className="text-center text-sm text-blue-800 font-medium">
-            Bütün Megahand mağazalarında bugün {discount}% endirim!
+            Bütün Megahand mağazalarında bugün endirim!
           </div>
         </div>
         
