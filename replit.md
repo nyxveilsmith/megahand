@@ -75,6 +75,19 @@ Preferred communication style: Simple, everyday language.
 - **Tailwind CSS**: Utility-first CSS framework
 - **PostCSS**: CSS processing and optimization
 
+## Recent Changes
+
+### July 14, 2025
+- **Fixed Asset Import Error**: Resolved missing asset import issue in AdminDashboard.tsx that was preventing the app from running
+- **Added Day Rhythm Card**: Created a new real-time day progress component that shows:
+  - Current time and date in Azerbaijani
+  - Percentage of day completed based on current time
+  - Percentage of year completed
+  - Day of year counter
+  - Visual rhythm pattern with animated progress bars
+  - Dynamic color scheme based on time of day (morning/afternoon/evening/night)
+  - Updates every second using real system clock
+
 ## Deployment Strategy
 
 ### Build Process

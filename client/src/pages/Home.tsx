@@ -8,6 +8,7 @@ import { useLocations } from "@/hooks/useLocations";
 import LocationCard from "@/components/LocationCard";
 import { DownloadButton } from "@/components/DownloadButton";
 import { Loader2 } from "lucide-react";
+import DayRhythmCard from "@/components/DayRhythmCard";
 
 // Function to return the correct Google Maps URL for each location
 const getMapUrl = (locationId: number): string | null => {
@@ -56,6 +57,7 @@ const Home = () => {
   return (
     <>
       <MainCarousel />
+      <DayRhythmCard />
       
       {/* About Section Preview */}
       <section id="about-preview" className="py-8 sm:py-12 md:py-16 bg-white">
