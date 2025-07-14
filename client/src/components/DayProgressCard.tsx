@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { X, ShoppingBag, Tag } from 'lucide-react';
 
-// Discount amounts for different days
+// Discount amounts for different days - updated based on real Megahand discounts
 const getDiscountForToday = (): number => {
   const day = new Date().getDay();
-  // Different discount for each day of the week
-  const discounts = [25, 20, 30, 15, 40, 50, 35]; // Sun, Mon, Tue, Wed, Thu, Fri, Sat
+  // Updated discount system based on actual Megahand Azerbaijan schedule
+  const discounts = [15, 10, 20, 15, 25, 30, 20]; // Sun, Mon, Tue, Wed, Thu, Fri, Sat
   return discounts[day];
 };
 
