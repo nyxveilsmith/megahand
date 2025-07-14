@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta name="theme-color" content="#0057a6" />
+    <meta name="description" content="MEGAHAND - Keyfiyyətli Avropa geyim mağazaları şəbəkəsi. Sumqayıt, Bakı və Gəncədə yerləşən filiallarımıza baş çəkin." />
+    <meta name="keywords" content="Megahand, Avropa geyimləri, geyim mağazası, Sumqayıt, Bakı, Gəncə, keyfiyyətli geyim" />
+    
+    <title>MEGAHAND - Avropa Geyim Mağazaları Şəbəkəsi</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/src/assets/favicon.png" />
+    
+    <!-- Preload key assets -->
+    <link rel="preload" href="/src/assets/Logo.jpg" as="image" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://maps.app.goo.gl" crossorigin />
+    
+    <!-- Added for performance -->
+    <link rel="dns-prefetch" href="//images.unsplash.com" />
+    <link rel="dns-prefetch" href="//maps.app.goo.gl" />
+    
+    <!-- Critical CSS -->
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        text-rendering: optimizeSpeed;
+      }
+      #root {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .loading-spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        z-index: 9999;
+      }
+      .loading-spinner::after {
+        content: '';
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #0057a6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading-spinner"></div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- This script injects a replit badge into the page, please feel free to remove this line -->
+    <script
+      type="text/javascript"
+      src="https://replit.com/public/js/replit-badge-v3.js"
+      async
+    ></script>
+    <!-- Remove loading spinner once app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        const spinner = document.querySelector('.loading-spinner');
+        if (spinner) {
+          spinner.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
