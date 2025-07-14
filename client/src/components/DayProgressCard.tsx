@@ -5,7 +5,11 @@ import { X, ShoppingBag, Tag } from 'lucide-react';
 
 // Discount amounts for different days - updated based on real Megahand discounts
 const getDiscountForToday = (): number => {
-  const day = new Date().getDay();
+  // Get current day in Azerbaijan timezone (UTC+4)
+  const now = new Date();
+  const azerbaijanTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Baku"}));
+  const day = azerbaijanTime.getDay();
+  
   // Updated discount system based on actual Megahand Azerbaijan schedule
   const discounts = [15, 10, 20, 15, 25, 30, 20]; // Sun, Mon, Tue, Wed, Thu, Fri, Sat
   return discounts[day];
@@ -81,10 +85,13 @@ const DayProgressCard = () => {
     return null;
   }
 
-  // Get the current day name in Azerbaijani
+  // Get the current day name in Azerbaijani using Azerbaijan timezone
   const getDayName = () => {
+    const now = new Date();
+    const azerbaijanTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Baku"}));
+    const day = azerbaijanTime.getDay();
     const days = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
-    return days[new Date().getDay()];
+    return days[day];
   };
   
   return (
