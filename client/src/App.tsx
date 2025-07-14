@@ -17,31 +17,13 @@ import Admin from "@/pages/Admin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import DiscountCard from "./components/DiscountCard";
+
 
 function Router() {
   // Scroll to top when route changes
   useScrollToTop();
   
-  // Show the discount popup on pages except admin
-  const [showDiscountCard, setShowDiscountCard] = useState(false);
-  const [location] = useLocation();
-  
-  // Show the discount popup on every page load except admin pages
-  useEffect(() => {
-    const isAdminPage = location.includes('/admin');
-    
-    if (!isAdminPage) {
-      // Wait a bit before showing the discount popup for better user experience
-      const timer = setTimeout(() => {
-        setShowDiscountCard(true);
-      }, 1500);
-      
-      return () => clearTimeout(timer);
-    } else {
-      setShowDiscountCard(false);
-    }
-  }, [location]);
+
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -59,8 +41,6 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
         
-        {/* Discount Card popup - shows on all pages except admin */}
-        {showDiscountCard && <DiscountCard />}
       </main>
       <Footer />
     </div>
