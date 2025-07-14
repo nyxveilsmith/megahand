@@ -14,11 +14,7 @@ import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DownloadButton } from "@/components/DownloadButton";
 
-// Import assets
-import LogoImage from "@assets/Logo.jpg";
-import MegaHandTree from "@assets/Mega-Hand-agac.jpg";
-import MegaHandVinyl from "@assets/reklam-vinil-Megahand-90.jpg";
-import FaviconImage from "@assets/favicon.png";
+// Note: Asset imports removed as files don't exist in attached_assets folder
 
 const AdminDashboard = () => {
   const { isAuthenticated, username, logout, loading } = useContext(AuthContext);
@@ -414,24 +410,15 @@ const AdminDashboard = () => {
                   </div>
                   
                   <div className="mt-8">
-                    <h3 className="text-lg font-medium mb-4">Included Assets</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <img src={LogoImage} alt="Megahand Logo" className="h-20 w-auto mx-auto mb-2" />
-                        <p className="text-sm text-center">Logo.jpg</p>
-                      </div>
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <img src={MegaHandTree} alt="Megahand Tree" className="h-20 w-auto mx-auto mb-2" />
-                        <p className="text-sm text-center">Mega-Hand-agac.jpg</p>
-                      </div>
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <img src={MegaHandVinyl} alt="Megahand Vinyl" className="h-20 w-auto mx-auto mb-2" />
-                        <p className="text-sm text-center">reklam-vinil-Megahand-90.jpg</p>
-                      </div>
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <img src={FaviconImage} alt="Favicon" className="h-20 w-auto mx-auto mb-2" />
-                        <p className="text-sm text-center">favicon.png</p>
-                      </div>
+                    <h3 className="text-lg font-medium mb-4">Download Contents</h3>
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <ul className="text-sm text-gray-600 space-y-2">
+                        <li>• Complete source code (React frontend + Node.js backend)</li>
+                        <li>• Database schema and configuration files</li>
+                        <li>• All styling and UI components</li>
+                        <li>• Project configuration and dependencies</li>
+                        <li>• Documentation and README files</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
