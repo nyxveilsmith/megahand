@@ -1,6 +1,6 @@
 import { db } from "./db";
 import { storage } from "./storage";
-import { users, articles, locations } from "@shared/schema";
+import { users, articles, locations } from "../shared/schema";
 import { eq } from "drizzle-orm";
 
 // Function to seed the database with initial data if empty

@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import session from "express-session";
-import { insertArticleSchema, insertLocationSchema } from "@shared/schema";
+import { insertArticleSchema, insertLocationSchema } from "../shared/schema";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 import MemoryStore from "memorystore";

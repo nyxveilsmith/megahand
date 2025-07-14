@@ -2,9 +2,6 @@ import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { drizzle } from "drizzle-orm/neon-serverless";
-import { migrate } from "drizzle-orm/neon-serverless/migrator";
-import { pool } from "./db";
 import { seedDatabase } from "./seed";
 
 const app = express();
@@ -44,17 +41,7 @@ app.use((req, res, next) => {
 
 (async () => {
   log("Initializing database...");
-  try {
-    // Apply database migrations
-    log("Pushing schema changes to database...");
-    await migrate(drizzle(pool), {
-      migrationsFolder: "./migrations",
-    });
-    log("Schema changes applied successfully.");
-  } catch (error) {
-    log("Database migration failed: " + error.message);
-  }
-
+  
   // Seed the database
   await seedDatabase();
 

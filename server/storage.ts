@@ -1,6 +1,6 @@
 import { db } from "./db";
-import { users, articles, locations } from "@shared/schema";
-import type { User, InsertUser, Article, InsertArticle, Location, InsertLocation } from "@shared/schema";
+import { users, articles, locations } from "../shared/schema";
+import type { User, InsertUser, Article, InsertArticle, Location, InsertLocation } from "../shared/schema";
 import { eq, desc } from "drizzle-orm";
 
 export interface IStorage {
