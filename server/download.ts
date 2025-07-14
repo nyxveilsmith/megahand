@@ -95,31 +95,40 @@ export async function downloadAllFiles(req: Request, res: Response) {
       filesToInclude.push(`client/src/components/ui/${component}`);
     });
     
-    // Add all files to zip with flat structure (no folders)
+    // Add all files to zip with flat structure, fixing imports to work in flat structure
     filesToInclude.forEach(filePath => {
       const fullPath = path.join(process.cwd(), filePath);
       if (fs.existsSync(fullPath)) {
-        const fileData = fs.readFileSync(fullPath);
+        let fileData = fs.readFileSync(fullPath, 'utf-8');
+        
+        // Fix imports to work in flat structure
+        if (filePath.endsWith('.tsx') || filePath.endsWith('.ts')) {
+          // Replace relative imports with flat imports
+          fileData = fileData
+            .replace(/from ['"](\.\.\/)*shared\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*server\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*client\/src\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*components\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*pages\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*hooks\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*context\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*lib\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"](\.\.\/)*components\/ui\/([^'"]+)['"]/g, 'from "./$2"')
+            .replace(/from ['"]@\/([^'"]+)['"]/g, 'from "./$1"')
+            .replace(/from ['"]\.\/([^'"]+)['"]/g, 'from "./$1"')
+            .replace(/import.*from ['"]wouter['"]/g, 'import { Switch, Route, Link, useLocation } from "wouter"');
+        }
+        
         const fileName = path.basename(filePath);
         
-        // If there are duplicate names, prefix with directory name
+        // Handle duplicate names by adding numbers
         let finalFileName = fileName;
-        if (filePath.includes('components/ui/')) {
-          finalFileName = `ui-${fileName}`;
-        } else if (filePath.includes('components/')) {
-          finalFileName = `component-${fileName}`;
-        } else if (filePath.includes('pages/')) {
-          finalFileName = `page-${fileName}`;
-        } else if (filePath.includes('hooks/')) {
-          finalFileName = `hook-${fileName}`;
-        } else if (filePath.includes('server/')) {
-          finalFileName = `server-${fileName}`;
-        } else if (filePath.includes('shared/')) {
-          finalFileName = `shared-${fileName}`;
-        } else if (filePath.includes('context/')) {
-          finalFileName = `context-${fileName}`;
-        } else if (filePath.includes('lib/')) {
-          finalFileName = `lib-${fileName}`;
+        let counter = 1;
+        while (zip.file(finalFileName)) {
+          const ext = path.extname(fileName);
+          const base = path.basename(fileName, ext);
+          finalFileName = `${base}_${counter}${ext}`;
+          counter++;
         }
         
         zip.file(finalFileName, fileData);
